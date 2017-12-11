@@ -1,0 +1,16 @@
+{
+	"name": "bhubr/wordpress-simplest-theme-ever",
+	"description": "WordPress minimalist theme",
+	"version": "0.1.0",
+	"type": "wordpress-theme",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Benoît Hubert",
+			"email": "benoithubert@gmail.com"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
