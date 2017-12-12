@@ -1,19 +1,92 @@
 /*
- Theme Name: Better Motherfucking Theme
- Description: A Minimalist Motherfucking WP Theme, inspired by http://bettermotherfuckingwebsite.com/
+ Theme Name: Simplest Theme Ever
+ Version: 0.1.1
+ Description: A Minimalist WordPress Theme, inspired by http://bettermotherfuckingwebsite.com/
 */
-body{
-  margin:40px auto;
-  max-width:650px;
-  line-height:1.6;
-  font-size:18px;
-  color:#444;
-  padding:0 10px;
-  font-family: Georgia;
+html, body, div, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
 }
-h1,h2,h3{
-  line-height:1.2
+html,
+body {
+  height: 100%;
 }
-.content {
+body {
+  line-height: 1.6;
+  font-size: 18px;
+  color: #444;
+  font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif; /*Georgia;*/
+}
+h1 {
+	margin-bottom: 0.7em;
+}
+h1,h2,h3 {
+    line-height: 1.2;
+}
+a {
+  text-decoration: none;
+  color: #444;
+}
+a:hover {
+	color: #666;
+}
+#wrapper {
+  margin: 0 auto;
+  max-width: 900px;
+  min-height: 100%;
+  position: relative;
+}
+.content-wrapper {
 	text-align: justify;
+}
+header {
+	padding-top: 30px;
+}
+footer {
+	background: #f4f4f4;
+	border-top: 1px solid #e8e8e8;
+	text-align: center;
+	padding: 20px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.content-wrapper, .sidebar, footer {
+	margin-top: 2.5em;
+	box-sizing: border-box;
+}
+.content-wrapper {
+	padding-right: 20px;
+}
+.sidebar {
+	padding-left: 20px;
+}
+.sidebar li {
+	list-style-type: none;
+}
+.sidebar ul {
+	padding-left: 10px;
+}
+nav ul {
+	padding-left: 0;
+}
+nav li {
+	list-style-type: none;
+	display: inline;
+	position: relative;
+}
+nav li a {
+	padding: 5px 10px;
+}
+nav li li {
+	display: block;
+	position: absolute;
+	width: 200px;
+	left: 0;
+	top: 0;
 }
