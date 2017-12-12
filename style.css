@@ -77,16 +77,33 @@ nav ul {
 }
 nav li {
 	list-style-type: none;
-	display: inline;
+	display: inline-block;
 	position: relative;
+	/*height: 30px;*/
+	border-bottom: 1px dotted #bbb;
+}
+nav li a:hover {
+	background: #eee;
 }
 nav li a {
 	padding: 5px 10px;
+	width: 100%;
+	/*display: inline-block;*/
 }
 nav li li {
 	display: block;
-	position: absolute;
 	width: 200px;
+}
+nav li ul {
+	position: absolute;
 	left: 0;
-	top: 0;
+	top: 30px;
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height .6s;
+}
+nav > ul > li:hover > ul {
+	display: block;
+	border-top: 1px dotted #bbb;
+	max-height: 300px;
 }
