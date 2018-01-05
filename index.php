@@ -1,8 +1,8 @@
 <?php require 'header.php'; ?>
 
-<div class="pure-g">
+<div class="grid">
 
-	<div class="pure-u-3-4 content-wrapper">
+	<div class="col-2-3 content-wrapper">
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 		<h2><?php the_title(); ?></h2>
@@ -13,7 +13,7 @@
 	<?php endif; ?>
 	</div>
 
-	<div class="pure-u-1-4 sidebar">
+	<div class="col-1-3 sidebar">
 	<?php dynamic_sidebar('bmft-sidebar'); ?>
 	</div>
 </div>
