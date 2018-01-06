@@ -1,78 +1,10 @@
 /*
- Theme Name: Simplest Theme Ever
- Version: 0.2.0
- Description: A Minimalist WordPress Theme, inspired by http://bettermotherfuckingwebsite.com/
+ Theme Name: Reago
+ Version: 0.3.0
+ Description: A minimalist React-based Theme. Design inspired by http://bettermotherfuckingwebsite.com/.
+ Author: Benoît Hubert
+ Author URI: https://jsx.fr/
 */
-/* html, body, div, h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  vertical-align: baseline;
-  background: transparent;
-}
-html,
-body {
-  height: 100%;
-}
-body {
-  line-height: 1.6;
-  font-size: 18px;
-  color: #444;
-
-}
-h1 {
-	margin-bottom: 0.7em;
-}
-h1,h2,h3 {
-    line-height: 1.2;
-}
-a {
-  text-decoration: none;
-  color: #444;
-}
-a:hover {
-	color: #666;
-}
-
-.content-wrapper {
-	padding-right: 20px;
-}
-.sidebar {
-	padding-left: 20px;
-}
-nav ul {
-	padding-left: 0;
-}
-nav li {
-	list-style-type: none;
-	display: inline-block;
-	position: relative;
-	border-bottom: 1px dotted #bbb;
-}
-nav li a:hover {
-	background: #eee;
-}
-nav li a {
-	padding: 5px 10px;
-	width: 100%;
-nav li li {
-	display: block;
-	width: 200px;
-}
-nav li ul {
-	position: absolute;
-	left: 0;
-	top: 30px;
-	overflow: hidden;
-	max-height: 0;
-	transition: max-height .6s;
-}
-nav > ul > li:hover > ul {
-	display: block;
-	border-top: 1px dotted #bbb;
-	max-height: 300px;
-} */
 
 /* Grid: https://css-tricks.com/dont-overthink-it-grids/ */
 @media screen and (min-width: 640px) {

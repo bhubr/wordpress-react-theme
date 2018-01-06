@@ -2,12 +2,12 @@
 
 <div class="grid">
 
-	<div class="col-2-3 content-wrapper">
+	<div id="root" class="col-2-3 content-wrapper">
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-
-		<h2><?php the_title(); ?></h2>
-		<div class="content"><?php the_content(); ?></div>
-
+		<article id="post-<?php echo $post->ID; ?>">
+			<h2 data-contains="title"><?php the_title(); ?></h2>
+			<div data-contains="content" class="content"><?php the_content(); ?></div>
+		</article>
 	<?php endwhile; else : ?>
 		<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
 	<?php endif; ?>
@@ -17,4 +17,6 @@
 	<?php dynamic_sidebar('bmft-sidebar'); ?>
 	</div>
 </div>
+
+<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/bundle.react.js?ver=0.2.1-alpha&t=<?php echo time(); ?>'></script>
 <?php require 'footer.php';
