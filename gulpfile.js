@@ -9,7 +9,15 @@ var pathmod = require('pathmodify');
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
-//
+var zip = require('gulp-zip');
+var fs = require('fs');
+
+var archiveFiles = [
+  'style.css',
+  'screenshot.png',
+  '*.php'
+];
+
 function buildClient(watch, done) {
   var bundler =
     browserify('./src/index.js', { debug: true })
@@ -32,14 +40,22 @@ function buildClient(watch, done) {
   });
 }
 
+function makeZip() {
+  return gulp.src(archiveFiles)
+		.pipe(zip('archive.zip'))
+		.pipe(gulp.dest('dist'));
+}
+
 // gulp.task('build', function() { return compile(); });
 gulp.task('watch', function() {
   gulp.watch(['src'], buildClient);
+  gulp.watch(archiveFiles, makeZip);
 });
 
-gulp.task('build:client', function() {
+gulp.task('buildClient', function() {
   return buildClient();
 });
 
+gulp.task('makeZip', makeZip);
 
-gulp.task('default', gulp.series('build:client', 'watch'));
+gulp.task('default', gulp.series('buildClient', 'makeZip', 'watch'));

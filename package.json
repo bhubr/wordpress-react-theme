@@ -38,6 +38,7 @@
     "gulp-sourcemaps": "^2.6.3",
     "gulp-tap": "^1.0.1",
     "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^4.1.0",
     "gulplog": "^1.0.0",
     "pathmodify": "^0.5.0",
     "react": "^16.2.0",
