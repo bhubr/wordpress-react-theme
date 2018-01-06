@@ -1,22 +1,22 @@
-var gulp = require('gulp');
-var sourcemaps = require('gulp-sourcemaps');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var browserify = require('browserify');
-var watchify = require('watchify');
-var babelify = require('babelify');
-var pathmod = require('pathmodify');
-var babel = require('gulp-babel');
-var uglify = require('gulp-uglify');
-var gutil = require('gulp-util');
-var zip = require('gulp-zip');
-var fs = require('fs');
-
-var archiveFiles = [
+const gulp = require('gulp');
+const sourcemaps = require('gulp-sourcemaps');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const browserify = require('browserify');
+const watchify = require('watchify');
+const babelify = require('babelify');
+const pathmod = require('pathmodify');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
+const gutil = require('gulp-util');
+const zip = require('gulp-zip');
+const fs = require('fs');
+const archiveFiles = [
   'style.css',
   'screenshot.png',
   '*.php'
 ];
+const themeName = 'reago';
 
 function buildClient(watch, done) {
   var bundler =
@@ -40,10 +40,25 @@ function buildClient(watch, done) {
   });
 }
 
+function extractThemeVersion() {
+  return new Promise((resolve, reject) => {
+    fs.readFile(__dirname + '/style.css', (err, buf) => {
+      if(err) return reject(err);
+      const stylesheet = buf.toString();
+      const versionRegex = /Version\: ([0-9\.]+)/g;
+      const matches = versionRegex.exec(stylesheet);
+      themeVersion = matches[1];
+      resolve(themeVersion);
+    });
+  });
+}
+
 function makeZip() {
-  return gulp.src(archiveFiles)
-		.pipe(zip('archive.zip'))
-		.pipe(gulp.dest('dist'));
+  return extractThemeVersion()
+    .then(themeVersion => gulp.src(archiveFiles)
+      .pipe(zip(themeName + '-' + themeVersion + '.zip'))
+      .pipe(gulp.dest('dist'))
+    );
 }
 
 // gulp.task('build', function() { return compile(); });
@@ -55,6 +70,8 @@ gulp.task('watch', function() {
 gulp.task('buildClient', function() {
   return buildClient();
 });
+
+// gulp.task('getVersion', extractThemeVersion);
 
 gulp.task('makeZip', makeZip);
 
