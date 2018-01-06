@@ -1,13 +1,21 @@
 <?php
 
 $state = json_encode( [
-	'path'      => $_SERVER['REQUEST_URI'],
-	'status'    => isset( $status ) ? $status : 200,
-	'posts'     => $posts_mapped,
-	'messages'  => isset( $messages ) ? $messages : []
-] ); ?>
+	'meta'        => [
+		'path'      => $_SERVER['REQUEST_URI'],
+		'status'    => $response_code,
+		'messages'  => isset( $messages ) ? $messages : []
+	],
+	'posts'       => [
+		'query'     => '',
+		'items'     => $posts_reduced,
+		'isLoading' => false,
+		'lastError' => null
+	]
+], JSON_FORCE_OBJECT ); ?>
 			<script type='text/javascript'>
 			window.INITIAL_STATE = <?php echo $state; ?>;
+			window.REST_URL = '<?php echo get_option('siteurl'); ?>/wp-json/wp/v2';
 			</script>
 			<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/bundle.react.js?ver=0.2.1-alpha&t=<?php echo time(); ?>'></script>
 		</div> <!-- close .wrapper -->

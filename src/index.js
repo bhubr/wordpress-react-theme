@@ -13,42 +13,21 @@ catchLinks(window, function (href) {
     history.push(href);
 });
 
-// import {
-//   Route,
-//   Redirect,
-//   Link,
-//   Switch
-// } from 'react-router-dom';
-//
+import {
+  fetchPosts
+} from './actions';
 
 
 const { INITIAL_STATE } = window;
-console.log(INITIAL_STATE);
+console.log('INITIAL STATE', INITIAL_STATE);
 const store = configureStore(INITIAL_STATE);
 const rootEl = document.getElementById('root');
 
-/**
- * Displays a list of posts
- */
-// class App extends React.Component {
-//   render() {
-//     const { posts } = this.props;
-//     return posts.map(p => <PostItem key={p.id} post={p} />);
-//   }
-// }
-
+store.dispatch(fetchPosts({ slug: 'lorem-ipsum' }));
 
 /**
- * Define the target element and the rendering function
+ * Render the app
  */
-// const render = posts => ReactDOM.render(
-//     <PostList posts={posts} />,
-//     rootEl
-// );
-
-console.log(ReagoApp);
-
-
 const MyRoutedApp = () => {
   return (
     <Provider store={store}>

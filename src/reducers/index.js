@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux';
-// import posts from './posts';
-const posts = (state = initialState, action) => {
-  return state;
-}
+import posts from './posts';
+import meta from './meta';
 
-console.log('reducer post', posts);
-const reducers = combineReducers({ posts });
+const reducers = combineReducers({ posts, meta });
 
 export default reducers;

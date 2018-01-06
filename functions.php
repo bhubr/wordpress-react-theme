@@ -52,8 +52,8 @@ function bmft_register_sidebar() {
 /**
  * Map a Post object to a REST API-like structure
  */
- function bfmt_map_post_fields( $post ) {
-	 return [
+ function bfmt_map_post_fields( $carry = [], $post ) {
+	 $carry[ $post->ID ] = [
 		 'id'      => $post->ID,
 		 'title'   => $post->post_title,
 		 'content' => $post->post_content,
@@ -61,4 +61,5 @@ function bmft_register_sidebar() {
 		 'link'    => get_permalink( $post->ID ),
 		 'author'  => (int)$post->post_author
 	 ];
+	 return $carry;
  }
