@@ -18,5 +18,4 @@
 	</div>
 </div>
 
-<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/bundle.react.js?ver=0.2.1-alpha&t=<?php echo time(); ?>'></script>
 <?php require 'footer.php';

@@ -18,7 +18,7 @@
     width: 33.33%;
   }
   [class*='col-'] {
-    padding-right: 30px;
+    padding-right: 60px;
   }
   [class*='col-']:last-of-type {
     padding-right: 0;
@@ -94,7 +94,7 @@ a:hover {
 }
 .wrapper {
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 960px;
   min-height: 100%;
   position: relative;
 }
