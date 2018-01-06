@@ -44,7 +44,7 @@ function buildClient(watch, done) {
       .on('error', function(err) { console.error(err); this.emit('end'); })
       .pipe(source('bundle.react.js'))
       .pipe(buffer())
-      .pipe(uglify())
+      // .pipe(uglify())
       .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./js'))

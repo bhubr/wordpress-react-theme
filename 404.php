@@ -1,16 +1,14 @@
 <?php require 'header.php';
+$posts = get_posts( [ 'suppress_filters' => false ] );
+$posts_mapped = array_map( 'bfmt_map_post_fields', isset( $posts ) ? $posts : [] );
+
 $msg_page_doesnt_exist = esc_html__( "You landed in the wrong place! Page %s doesn't exist.", 'reago-theme' );
 $msg_page_try_this = esc_html__( "Why don't you check out one of our latest articles?", 'reago-theme' );
-$latest_posts = get_posts( [ 'suppress_filters' => false ] );
-$latest_post_data = array_map( function( $p ) {
-    return [
-      'id'    => $p->ID,
-      'link'  => get_permalink( $p->ID ),
-      'title' => $p->post_title,
-      // 'slug'  => $p->post_name
-    ];
-}, $latest_posts );
-
+$messages = [
+  'explain' => $msg_page_doesnt_exist,
+  'suggest' => $msg_page_try_this
+];
+$status = 404;
 ?>
 <div class="grid">
 
@@ -26,7 +24,7 @@ $latest_post_data = array_map( function( $p ) {
       <?php echo $msg_page_try_this; ?>
       <ul>
         <?php
-        foreach( $latest_post_data as $p ) {
+        foreach( $posts_mapped as $p ) {
           echo '<li><a href="' . $p['link']  . '">' . $p['title'] . '</a></li>';
         }
         ?>

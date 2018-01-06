@@ -1,5 +1,8 @@
-<?php require 'header.php'; ?>
-
+<?php
+require 'header.php';
+$posts_mapped = array_map( 'bfmt_map_post_fields', isset( $posts ) ? $posts : [] );
+// var_dump($posts_mapped);
+?>
 <div class="grid">
 
 	<div id="root" class="col-2-3 content-wrapper">
