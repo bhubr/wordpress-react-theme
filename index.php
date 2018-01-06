@@ -4,7 +4,6 @@
 
 	<div id="root" class="col-2-3 content-wrapper">
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-
 		<article id="post-<?php echo $post->ID; ?>">
 			<h2 data-contains="title"><?php the_title(); ?></h2>
 			<div data-contains="content" class="content"><?php the_content(); ?></div>
