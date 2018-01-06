@@ -11,11 +11,23 @@ const uglify = require('gulp-uglify');
 const gutil = require('gulp-util');
 const zip = require('gulp-zip');
 const fs = require('fs');
+const es = require('event-stream');
+
 const archiveFiles = [
   'style.css',
   'screenshot.png',
   '*.php'
 ];
+const builtFiles = [
+  'js/*'
+];
+const watchedFiles = [
+  'style.css',
+  'screenshot.png',
+  '*.php',
+  'js/*'
+];
+
 const themeName = 'reago';
 
 function buildClient(watch, done) {
@@ -53,25 +65,32 @@ function extractThemeVersion() {
   });
 }
 
-function makeZip() {
+function makeZip(cb) {
   return extractThemeVersion()
-    .then(themeVersion => gulp.src(archiveFiles)
-      .pipe(zip(themeName + '-' + themeVersion + '.zip'))
-      .pipe(gulp.dest('dist'))
-    );
+    .then(themeVersion => {
+      var base = 'dist/' + themeVersion;
+      var tmp = base + '/reago';
+      var rebasedFiles = base + '/**/*';
+      es.concat(
+          gulp.src(archiveFiles)
+              .pipe(gulp.dest(tmp)),
+            gulp.src(builtFiles)
+                .pipe(gulp.dest( tmp + '/js')),
+          gulp.src(rebasedFiles, { base })
+              .pipe(zip(themeName + '-' + themeVersion + '.zip'))
+              .pipe(gulp.dest('dist'))
+      ).on('end', cb)
+    });
 }
 
-// gulp.task('build', function() { return compile(); });
 gulp.task('watch', function() {
   gulp.watch(['src'], buildClient);
-  gulp.watch(archiveFiles, makeZip);
+  gulp.watch(watchedFiles, makeZip);
 });
 
 gulp.task('buildClient', function() {
   return buildClient();
 });
-
-// gulp.task('getVersion', extractThemeVersion);
 
 gulp.task('makeZip', makeZip);
 

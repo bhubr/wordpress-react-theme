@@ -14,7 +14,6 @@ function bmft_enqueue_styles() {
 
 	// JS
 	wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-2.1.1.min.js', array('jquery'), '2.1.1', false);
-	// wp_enqueue_script('react-app', get_template_directory_uri() . '/js/bundle.react.js', array(), '0.2.1-alpha', false);
 
 }
 
