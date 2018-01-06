@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import PostList from './PostList';
 import ReagoApp from './ReagoApp';
 import configureStore from './configureStore';
+import catchLinks from 'catch-links'
+import history from './history';
+
+catchLinks(window, function (href) {
+    console.log('caught', href);
+    history.push(href);
+});
 
 // import {
 //   Route,
@@ -45,7 +52,7 @@ console.log(ReagoApp);
 const MyRoutedApp = () => {
   return (
     <Provider store={store}>
-      <Router>
+      <Router history={history}>
         <ReagoApp />
       </Router>
     </Provider>
