@@ -7,6 +7,7 @@ import PostItem from './PostItem';
 export default class PostList extends React.Component {
   render() {
     const { posts } = this.props;
-    return posts.map(p => <PostItem key={p.id} post={p} />);
+    const Component = this.props.component ? this.props.component : PostItem;
+    return posts.map(p => <Component key={p.id} post={p} />);
   }
 }

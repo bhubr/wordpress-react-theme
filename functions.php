@@ -52,8 +52,9 @@ function bmft_register_sidebar() {
 /**
  * Map a Post object to a REST API-like structure
  */
- function bfmt_map_post_fields( $carry = [], $post ) {
-	 $carry[ $post->ID ] = [
+ function bfmt_map_post_fields( $post ) {
+	 // $carry[ $post->ID ] =
+   return [
 		 'id'      => $post->ID,
 		 'title'   => $post->post_title,
 		 'content' => $post->post_content,
@@ -61,5 +62,13 @@ function bmft_register_sidebar() {
 		 'link'    => get_permalink( $post->ID ),
 		 'author'  => (int)$post->post_author
 	 ];
-	 return $carry;
+	 // return $carry;
  }
+
+/**
+ * Map a Post slug to an id
+ */
+ // function bfmt_map_slug_id( $carry = [], $post ) {
+	//  $carry[ $post->post_name ] = $post->ID;
+	//  return $carry;
+ // }

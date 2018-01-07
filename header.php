@@ -23,5 +23,6 @@ $response_code = http_response_code();
 if( $response_code === 404 ) {
   $posts = get_posts( [ 'suppress_filters' => false ] );
 }
-$posts_reduced = array_reduce( $posts, 'bfmt_map_post_fields', [] );
+$posts_mapped = array_map( 'bfmt_map_post_fields', $posts );
+// $posts_slug_id_map = array_reduce( $posts, 'bfmt_map_slug_id', [] );
 ?>

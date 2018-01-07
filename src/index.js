@@ -19,6 +19,9 @@ import {
 
 
 const { INITIAL_STATE } = window;
+if(Array.isArray(INITIAL_STATE.meta.messages)) {
+  INITIAL_STATE.meta.messages = {};
+}
 console.log('INITIAL STATE', INITIAL_STATE);
 const store = configureStore(INITIAL_STATE);
 const rootEl = document.getElementById('root');

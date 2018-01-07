@@ -31,10 +31,12 @@ export function requestPostsFailure(error) {
 }
 
 export function fetchPosts(query) {
+  console.log('### FETCH POSTS #1', query);
   return dispatch => {
     dispatch(requestPosts(query));
     const qs = serialize(query);
     const pathWithQueryString = '/posts' + (qs ? '?' + qs : '');
+    console.log('### FETCH POSTS #2', REST_URL + pathWithQueryString);
     fetch(REST_URL + pathWithQueryString)
     .then(response => response.json())
     .then(posts => {

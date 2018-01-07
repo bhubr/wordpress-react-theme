@@ -20,17 +20,20 @@ export default (state = initialState, action) => {
       break;
     case FETCH_POSTS_SUCCESS:
       const { posts } = action;
-      let unchangedItems = {};
+      // let unchangedItems = {};
       const receivedPostIds = posts.map(p => (p.id));
-      for(let id in items) {
-        if(receivedPostIds.indexOf(id) === -1) {
-          unchangedItems[id] = { ...items[id] };
-        }
-      }
-      const newItems = posts.reduce((carry, item) => {
-        return Object.assign(carry, { [item.id]: { ...item } });
-      }, unchangedItems);
-      return Object.assign({ query }, { items: newItems, lastError: null, isLoading: false });
+      const unchangedItems = items.filter(p => receivedPostIds.indexOf(p.id) === -1);
+      const mergedItemList = [...unchangedItems, ...posts];
+      return Object.assign({ query }, { items: mergedItemList, lastError: null, isLoading: false });
+      // for(let id in items) {
+      //   if(receivedPostIds.indexOf(id) === -1) {
+      //     unchangedItems[id] = { ...items[id] };
+      //   }
+      // }
+      // const newItems = posts.reduce((carry, item) => {
+      //   return Object.assign(carry, { [item.id]: { ...item } });
+      // }, unchangedItems);
+      // return Object.assign({ query }, { items: newItems, lastError: null, isLoading: false });
       break;
     case FETCH_POSTS_REQUEST:
       const { error } = action;

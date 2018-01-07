@@ -8,11 +8,11 @@ $state = json_encode( [
 	],
 	'posts'       => [
 		'query'     => '',
-		'items'     => $posts_reduced,
+		'items'     => $posts_mapped,
 		'isLoading' => false,
 		'lastError' => null
 	]
-], JSON_FORCE_OBJECT ); ?>
+] ); ?>
 			<script type='text/javascript'>
 			window.INITIAL_STATE = <?php echo $state; ?>;
 			window.REST_URL = '<?php echo get_option('siteurl'); ?>/wp-json/wp/v2';
