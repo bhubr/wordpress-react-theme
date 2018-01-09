@@ -9,23 +9,8 @@ import {
 import SinglePost from './SinglePost';
 import MultiplePost from './MultiplePost';
 import ToolBar from './ToolBar';
+import NotFound from './NotFound';
 
-const Status = ({ code, children }) => (
-  <Route render={({ staticContext }) => {
-    if (staticContext) {
-      staticContext.status = code;
-    }
-    return children;
-  }}/>
-);
-
-const NotFound = () => (
-  <Status code={404}>
-    <div>
-      <h1>Sorry, can’t find that.</h1>
-    </div>
-  </Status>
-);
 
 const Home = () => (
   <h1>Home</h1>

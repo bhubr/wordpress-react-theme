@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Reago Theme - 0.2.0 - Development\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-09 16:43+0100\n"
+"POT-Creation-Date: 2018-01-09 17:09+0100\n"
 "PO-Revision-Date: 2018-01-02 12:37:17+0000\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -12,18 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Poedit 2.0.5\n"
-
-#: functions.php:31
-msgid "Main Menu"
-msgstr "Menu Principal"
-
-#: functions.php:44
-msgid "Primary Widget Area"
-msgstr "Zone de widgets principale"
-
-#: functions.php:46
-msgid "The primary widget area"
-msgstr "La zone de widgets principale"
 
 #: 404.php:3
 #, php-format
@@ -33,3 +21,32 @@ msgstr "Vous avez atterri au mauvais endroit ! La page %s n'existe pas."
 #: 404.php:4
 msgid "Why don't you check out one of our latest articles?"
 msgstr "Pourquoi ne pas jeter un oeil à un de nos derniers articles ?"
+
+#: 404.php:13
+msgid "404 Not Found"
+msgstr "404 Non Trouvé"
+
+#: footer.php:34
+msgid "https://wordpress.org/"
+msgstr "https://fr.wordpress.org/"
+
+#: footer.php:34
+#, php-format
+msgid "Proudly powered by %s"
+msgstr "Fièrement propulsé par %s et %s"
+
+#: functions.php:31
+msgid "Main Menu"
+msgstr "Menu Principal"
+
+#: functions.php:45
+msgid "Primary Widget Area"
+msgstr "Zone de widgets principale"
+
+#: functions.php:47
+msgid "The primary widget area"
+msgstr "La zone de widgets principale"
+
+#: index.php:18
+msgid "Sorry, no posts matched your criteria."
+msgstr "Désolé, aucun article ne correspond à votre recherche."

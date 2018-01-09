@@ -1,21 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostItem from './PostItem';
+import ToolBar from './ToolBar';
+import NotFound from './NotFound';
 
-class NotFound extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log('SinglePost', this);
-  }
-  render() {
-    return(
-      <div>
-        <h1>Sorry, can’t find that. </h1>
-        <p>{this.props.path}</p>
-      </div>
-    );
-  }
-}
 // class SinglePost extends React.Component {
 //   constructor(props) {
 //     super(props);

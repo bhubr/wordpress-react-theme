@@ -31,7 +31,7 @@ $state = json_encode( [
 		</div> <!-- close .wrapper -->
 		<footer>
 			<div class="wrapper">
-				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'wpbmftheme' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'wpbmftheme' ), 'WordPress' ); ?></a>
+				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'reago-theme' ) ); ?>"><?php printf( __( 'Proudly powered by %s and %s', 'reago-theme' ), 'WordPress', 'React' ); ?></a>
 			</div>
 		</footer>
 		<?php wp_footer(); ?>
