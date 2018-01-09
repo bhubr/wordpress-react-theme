@@ -9,7 +9,7 @@ export default class PostSummary extends React.Component {
     return (
       <article id={'summary-' + post.id}>
         <span>{post.date ? post.date.substr(0, 10) : ''}&nbsp;</span>
-        <span>{post.title}</span>
+        <span dangerouslySetInnerHTML={{__html: post.title}} />
         {/* <div data-contains="content" className="content" dangerouslySetInnerHTML={{__html: post.content}} /> */}
       </article>
     );
