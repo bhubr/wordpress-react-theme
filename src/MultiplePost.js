@@ -25,6 +25,22 @@ class MultiplePost extends React.Component {
     console.log('FIRING QUERY', query);
     this.props.requestPosts(query);
   }
+
+  // https://stackoverflow.com/questions/32846337/how-to-fetch-the-new-data-in-response-to-react-router-change-with-redux
+  componentWillReceiveProps(nextProps) {
+    console.log('MultiplePost componentWillReceiveProps', nextProps);
+    console.log(this.props.match.params, nextProps.match.params);
+    const oldParams = this.props.match.params;
+    const newParams = nextProps.match.params;
+    for(let p in newParams) {
+      // console.log('>>>>>> checking params changed', p, newParams[p], oldParams[p]);
+      if (newParams[p] !== oldParams[p]) {
+        // console.log('>>>>>>>>>>>>>>>>>>>>> PARAMS CHANGED', newParams[p], ' !== ', oldParams[p]);
+        const query = routeParamsToQuery(nextProps.match.params);
+        this.props.requestPosts(query);
+      }
+    }
+  }
 }
 
 const mapStateToProps = state => {

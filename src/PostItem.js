@@ -9,7 +9,7 @@ class PostItem extends React.Component {
   render() {
     const { post, users } = this.props;
     const author = users.find(u => u.id === post.author);
-    console.log('PostItem', post.title, author, post.date);
+    // console.log('PostItem', post.title, author, post.date);
     return (
       <article id={'post-' + post.id}>
         <h2 data-contains="title" dangerouslySetInnerHTML={{__html: post.title}} />

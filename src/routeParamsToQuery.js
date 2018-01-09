@@ -27,18 +27,32 @@ function getYearArchiveQuery(year) {
     return { before, after };
 }
 
+function getAuthorArchive(authorSlug) {
+  const { users } = window.INITIAL_STATE.meta;
+  const author = users.find(u => (u.slug === authorSlug));
+  return { author: author.id };
+}
+
+/**
+ * Check the route params and call a query builder function accordingly
+ */
 export default function(params) {
+
+  // Get postsPerPage from window state
   const { postsPerPage } = window.INITIAL_STATE.meta;
   const { page } = params;
   let query = {};
   console.error('### routeParamsToQuery', params);
-  if (params.year) {
-    const { year, month } = params;
-    console.error('### routeParamsToQuery time archive', year, month);
-    query = month ? getMonthArchiveQuery(year, month) : getYearArchiveQuery(year);
+
+  // Year archive
+  if (params.year && ! params.year) {
+    query = getYearArchiveQuery(year);
+  }
+  else if (params.year && params.month) {
+    query = getMonthArchiveQuery(params.year, params.month);
   }
   else if(params.author) {
-    
+    query = getAuthorArchive(params.author);
   }
   const pageParam = page ? { page } : {};
   return Object.assign(query, pageParam, { per_page: postsPerPage });
