@@ -53,8 +53,8 @@ const ReagoApp = () => (
     <ToolBar />
     <Switch>
       <Route exact path="/" component={MultiplePost}/>
-      <QueryRoute path="/author/:slug" component={MultiplePost}/>
-      <QueryRoute path="/:year/:month" component={MultiplePost}/>
+      <QueryRoute path="/author/:author" component={MultiplePost}/>
+      <QueryRoute path="/:year/:month/:hasPage?/:page?" component={MultiplePost}/>
       <QueryRoute path="/category/:slug" component={MultiplePost}/>
       <Route path="/:slug" component={SinglePost}/>
       {/* some other routes

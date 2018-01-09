@@ -26,8 +26,6 @@ console.log('INITIAL STATE', INITIAL_STATE);
 const store = configureStore(INITIAL_STATE);
 const rootEl = document.getElementById('root');
 
-store.dispatch(fetchPosts({ slug: 'lorem-ipsum' }));
-
 /**
  * Render the app
  */

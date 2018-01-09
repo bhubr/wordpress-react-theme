@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log('post reducer', FETCH_POSTS_SUCCESS, state, action);
+  // console.log('post reducer', FETCH_POSTS_SUCCESS, state, action);
   const { query, items, lastError, isLoading } = state;
   switch (action.type) {
     case FETCH_POSTS_REQUEST:

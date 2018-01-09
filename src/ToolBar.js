@@ -48,12 +48,12 @@ class ToolBar extends React.Component {
     paddedMonth = (month < 10 ? '0' : '') + month;
     const before = `${year}-${paddedMonth}-01T00:00:00Z`;
     console.log(before, after);
-    this.props.fetchPosts({ before, after});
+    this.props.fetchPosts({ before, after });
   }
 
   render() {
     return (
-      <div>
+      <div className="toolbar">
         <h3>React Toolbar</h3>
         <PostList posts={this.props.posts} component={PostSummary} />
         <select value={this.state.year} onChange={this.changeYear}>

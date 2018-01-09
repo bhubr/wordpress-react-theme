@@ -1,10 +1,20 @@
 <?php
+$users = array_map( function( $user ) {
+	return [
+		'id'   => $user->ID,
+		'slug' => $user->user_nicename,
+		'name' => $user->display_name,
+		'url'  => $user->user_url
+	];
+}, get_users() );
 
 $state = json_encode( [
-	'meta'        => [
-		'path'      => $_SERVER['REQUEST_URI'],
-		'status'    => $response_code,
-		'messages'  => isset( $messages ) ? $messages : []
+	'meta'           => [
+		'path'         => $_SERVER['REQUEST_URI'],
+		'status'       => $response_code,
+		'messages'     => isset( $messages ) ? $messages : [],
+		'postsPerPage' => get_option('posts_per_page'),
+		'users'        => $users
 	],
 	'posts'       => [
 		'query'     => '',

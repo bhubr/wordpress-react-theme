@@ -3,21 +3,27 @@ import {
   fetchPosts
 } from './actions';
 import { connect } from 'react-redux';
+import PostList from './PostList';
+
+import routeParamsToQuery from './routeParamsToQuery';
 
 class MultiplePost extends React.Component {
   constructor(props) {
     super(props);
-    this.query = this.props.match.params;
+    console.log('MultiplePost constructor');
   }
   render() {
-    console.log('MultiplePost', this.props)
+    console.log('MultiplePost render');
     return (
-      <div>Multiple Posts</div>
+      <PostList posts={this.props.posts} />
     );
   }
 
   componentWillMount() {
-    this.props.requestPosts(this.query);
+    console.log('MultiplePost componentWillMount');
+    const query = routeParamsToQuery(this.props.match.params);
+    console.log('FIRING QUERY', query);
+    this.props.requestPosts(query);
   }
 }
 

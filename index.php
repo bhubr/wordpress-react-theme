@@ -12,7 +12,9 @@ require 'header.php';
 			</div>
 			<div data-contains="content" class="content"><?php the_content(); ?></div>
 		</article>
-	<?php endwhile; else : ?>
+	<?php endwhile; ?>
+		<div class="navigation"><p><?php posts_nav_link(); ?></p></div>
+	<?php else : ?>
 		<p><?php esc_html_e( 'Sorry, no posts matched your criteria.' ); ?></p>
 	<?php endif; ?>
 	</div>

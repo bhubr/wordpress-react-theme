@@ -11,6 +11,9 @@ function bmft_enqueue_styles() {
 	// CSS
 	wp_enqueue_style('main', get_template_directory_uri() . '/style.css', array(), filemtime(get_template_directory() . '/style.css'), false);
 	// wp_enqueue_style('pure-grids', get_template_directory_uri() . '/purecss/grids.css', array(), filemtime(get_template_directory() . '/style.css'), false);
+	if( WP_DEBUG ) {
+		wp_enqueue_style('debug', get_template_directory_uri() . '/debug.css', array('main'), filemtime(get_template_directory() . '/debug.css'), false);
+	}
 
 	// JS
 	wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-2.1.1.min.js', array('jquery'), '2.1.1', false);
