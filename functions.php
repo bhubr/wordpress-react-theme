@@ -45,7 +45,7 @@ function reago_register_sidebar() {
 		'name' => __( 'Primary Widget Area', 'reago-theme' ),
 		'id' => 'bmft-sidebar',
 		'description' => __( 'The primary widget area', 'reago-theme' ),
-		'before_widget' => '<li>',
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
@@ -64,7 +64,8 @@ function reago_register_sidebar() {
 		 'content' => $post->post_content,
 		 'slug'    => $post->post_name,
 		 'link'    => get_permalink( $post->ID ),
-		 'author'  => (int)$post->post_author
+		 'author'  => (int)$post->post_author,
+		 'date'    => $post->post_date
 	 ];
 	 // return $carry;
  }

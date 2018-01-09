@@ -8,13 +8,21 @@ $users = array_map( function( $user ) {
 	];
 }, get_users() );
 
+$categories = array_map( function( $cat ) {
+	return [
+		'id'   => $cat->term_id,
+		'slug' => $cat->slug
+	];
+}, get_terms( 'category' ) );
+
 $state = json_encode( [
 	'meta'           => [
 		'path'         => $_SERVER['REQUEST_URI'],
 		'status'       => $response_code,
-		'strings'     => isset( $strings ) ? $strings : [],
+		'strings'      => isset( $strings ) ? $strings : [],
 		'postsPerPage' => get_option('posts_per_page'),
-		'users'        => $users
+		'users'        => $users,
+		'categories'   => $categories
 	],
 	'posts'       => [
 		'query'     => '',

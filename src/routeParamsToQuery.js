@@ -29,8 +29,14 @@ function getYearArchiveQuery(year) {
 
 function getAuthorArchive(authorSlug) {
   const { users } = window.INITIAL_STATE.meta;
-  const author = users.find(u => (u.slug === authorSlug));
+  const author = users.find(user => (user.slug === authorSlug));
   return { author: author.id };
+}
+
+function getCategoryArchive(catSlug) {
+  const { categories } = window.INITIAL_STATE.meta;
+  const category = categories.find(cat => (cat.slug === catSlug));
+  return { categories: category.id };
 }
 
 /**
@@ -53,6 +59,9 @@ export default function(params) {
   }
   else if(params.author) {
     query = getAuthorArchive(params.author);
+  }
+  else if(params.category) {
+    query = getCategoryArchive(params.category);
   }
   const pageParam = page ? { page } : {};
   return Object.assign(query, pageParam, { per_page: postsPerPage });
