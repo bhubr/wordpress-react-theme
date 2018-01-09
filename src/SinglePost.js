@@ -4,7 +4,7 @@ import PostItem from './PostItem';
 import ToolBar from './ToolBar';
 import NotFound from './NotFound';
 import CommentForm from './CommentForm';
-
+import CommentsTemplate from './CommentsTemplate';
 
 // class SinglePost extends React.Component {
 //   constructor(props) {
@@ -37,6 +37,7 @@ class SinglePostOrNotFound extends React.Component {
     return post ?
       (<div>
         <PostItem post={post} />
+        <CommentsTemplate />
         <CommentForm />
       </div>) :
       <NotFound path={this.props.path} />;

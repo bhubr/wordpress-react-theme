@@ -37,7 +37,8 @@ $state = json_encode( [
 			'isPending' => false,
 		  'error'     => null,
 		  'statusMessage' => 'testtest'
-		]
+		],
+		'perPost'   => $commentsPerPost
 	],
 	'posts'       => [
 		'query'     => '',

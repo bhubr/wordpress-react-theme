@@ -16,6 +16,11 @@ require 'header.php';
 		// If comments are open or we have at least one comment, load up the comment template.
 	 if ( comments_open() ) :
 	     comments_template();
+			 $comments = get_comments( [
+			 		 	'post_id' => $post->ID,
+	 					'status' => 'approve' //Change this to the type of comments to be displayed
+			 ] );
+			 $commentsPerPost = [ $post->ID => $comments ];
 	 endif;
 		?>
 	<?php endwhile; ?>
