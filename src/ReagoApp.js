@@ -61,7 +61,7 @@ const ReagoApp = () => (
       <RedirectWithStatus
         status={301}
         from="/brands"
-        to="/messages"
+        to="/something"
       />
       <RedirectWithStatus
         status={302}

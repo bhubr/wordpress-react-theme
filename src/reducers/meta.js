@@ -1,7 +1,7 @@
 const initialState = {
   path: window.location.pathname,
   status: 200,
-  messages: {},
+  strings: {},
   postsPerPage: window.INITIAL_STATE.meta.postsPerPage
 };
 export default function(state = initialState, action) {

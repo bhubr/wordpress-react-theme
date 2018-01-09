@@ -1,12 +1,12 @@
 <?php
 
 
-add_action( 'wp_enqueue_scripts', 'bmft_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'reago_enqueue_styles' );
 
 /**
  * Enqueue MaterializeCSS styles and scripts, along with dependencies (jQuery)
  */
-function bmft_enqueue_styles() {
+function reago_enqueue_styles() {
 
 	// CSS
 	wp_enqueue_style('main', get_template_directory_uri() . '/style.css', array(), filemtime(get_template_directory() . '/style.css'), false);
@@ -20,12 +20,12 @@ function bmft_enqueue_styles() {
 
 }
 
-add_action( 'after_setup_theme', 'bmft_add_menu_support' );
+add_action( 'after_setup_theme', 'reago_add_menu_support' );
 
 /**
  * Add support for menus
  */
-function bmft_add_menu_support() {
+function reago_add_menu_support() {
 	// add_theme_support( 'menus' );
 	register_nav_menus( array(
 		'main-menu' => __( 'Main Menu', 'wpbfmtheme' )
@@ -33,12 +33,12 @@ function bmft_add_menu_support() {
 }
 
 
-add_action( 'widgets_init', 'bmft_register_sidebar' );
+add_action( 'widgets_init', 'reago_register_sidebar' );
 
 /**
  * Register the sidebar
  */
-function bmft_register_sidebar() {
+function reago_register_sidebar() {
 	// Area 1, located at the top of the sidebar.
 	register_sidebar( array(
 		'name' => __( 'Primary Widget Area', 'wpbfmtheme' ),
@@ -55,7 +55,7 @@ function bmft_register_sidebar() {
 /**
  * Map a Post object to a REST API-like structure
  */
- function bfmt_map_post_fields( $post ) {
+ function reago_map_post_fields( $post ) {
 	 // $carry[ $post->ID ] =
    return [
 		 'id'      => $post->ID,
@@ -71,7 +71,7 @@ function bmft_register_sidebar() {
 /**
  * Map a Post slug to an id
  */
- // function bfmt_map_slug_id( $carry = [], $post ) {
+ // function reago_map_slug_id( $carry = [], $post ) {
 	//  $carry[ $post->post_name ] = $post->ID;
 	//  return $carry;
  // }

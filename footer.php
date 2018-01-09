@@ -12,7 +12,7 @@ $state = json_encode( [
 	'meta'           => [
 		'path'         => $_SERVER['REQUEST_URI'],
 		'status'       => $response_code,
-		'messages'     => isset( $messages ) ? $messages : [],
+		'strings'     => isset( strings ) ? strings : [],
 		'postsPerPage' => get_option('posts_per_page'),
 		'users'        => $users
 	],
