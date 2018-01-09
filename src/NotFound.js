@@ -14,6 +14,7 @@ const Status = ({ code, children }) => (
 class NotFound extends React.Component {
   render() {
     const { meta: { strings, path }, posts } = this.props;
+    console.log('NOT FOUND', this.props);
     return (
     <Status code={404}>
         <h2 dangerouslySetInnerHTML={{__html: strings.notfound}} />

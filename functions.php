@@ -1,5 +1,5 @@
 <?php
-
+var_dump($_POST);
 
 add_action( 'wp_enqueue_scripts', 'reago_enqueue_styles' );
 
@@ -53,6 +53,12 @@ function reago_register_sidebar() {
 
 }
 
+function get_relative_link( $post_id ) {
+	$permalink = get_permalink( $post_id );
+	$site_url_length = strlen( get_option( 'siteurl' ) );
+	return substr( $permalink, $site_url_length );
+}
+
 /**
  * Map a Post object to a REST API-like structure
  */
@@ -63,7 +69,7 @@ function reago_register_sidebar() {
 		 'title'   => $post->post_title,
 		 'content' => $post->post_content,
 		 'slug'    => $post->post_name,
-		 'link'    => get_permalink( $post->ID ),
+		 'link'    => get_relative_link( $post->ID ),
 		 'author'  => (int)$post->post_author,
 		 'date'    => $post->post_date
 	 ];

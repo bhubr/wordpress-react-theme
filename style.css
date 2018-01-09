@@ -125,3 +125,32 @@ footer {
 .sidebar ul {
 	padding-left: 10px;
 }
+
+/* Comments form */
+.comment-form p {
+  position: relative;
+}
+.comment-form p label {
+  position: absolute;
+  font-size: 70%;
+  left: 5px;
+  top: 5px;
+  /* transition: all .2s; */
+}
+.comment-form p input[type="text"],
+.comment-form p textarea {
+  width: 80%;
+  padding: 25px 5px 5px 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  transition: border .3s;
+}
+.comment-form p input:focus,
+.comment-form p textarea:focus {
+  border: 1px solid #abf;
+}
+/* .comment-form p:hover label {
+  position: absolute;
+  font-size: 60%;
+  top: 5px;
+} */

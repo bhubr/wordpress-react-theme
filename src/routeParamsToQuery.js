@@ -54,8 +54,8 @@ export default function(params) {
   if (params.year && ! params.year) {
     query = getYearArchiveQuery(year);
   }
-  else if (params.year && params.month) {
-    query = getMonthArchiveQuery(params.year, params.month);
+  else if (params.year && params.monthnum) {
+    query = getMonthArchiveQuery(params.year, params.monthnum);
   }
   else if(params.author) {
     query = getAuthorArchive(params.author);

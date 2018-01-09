@@ -33,29 +33,32 @@ class QueryRoute extends React.Component {
 }
 
 
-const ReagoApp = () => (
-  <div>
-    <ToolBar />
-    <Switch>
-      <Route exact path="/" component={MultiplePost}/>
-      <QueryRoute path="/author/:author" component={MultiplePost}/>
-      <QueryRoute path="/category/:category" component={MultiplePost}/>
-      <Route path="/:year/:month/:hasPage?/:page?" component={MultiplePost}/>
-      <Route path="/:slug" component={SinglePost}/>
-      {/* some other routes
-      <RedirectWithStatus
-        status={301}
-        from="/brands"
-        to="/something"
-      />
-      <RedirectWithStatus
-        status={302}
-        from="/courses"
-        to="/dashboard"
-      /> */}
-      <Route component={NotFound}/>
-    </Switch>
-  </div>
-);
+const ReagoApp = () => {
+  const { permaStruct } = window.INITIAL_STATE.meta;
+  return (
+      <div>
+        <ToolBar />
+        <Switch>
+          <Route exact path={permaStruct} component={SinglePost}/>
+          <Route exact path="/" component={MultiplePost}/>
+          <QueryRoute path="/author/:author" component={MultiplePost}/>
+          <QueryRoute path="/category/:category" component={MultiplePost}/>
+          <Route path="/:year/:monthnum/:hasPage?/:page?" component={MultiplePost}/>
+          {/* some other routes
+          <RedirectWithStatus
+            status={301}
+            from="/brands"
+            to="/something"
+          />
+          <RedirectWithStatus
+            status={302}
+            from="/courses"
+            to="/dashboard"
+          /> */}
+          <Route component={NotFound}/>
+        </Switch>
+      </div>
+    );
+}
 
 export default ReagoApp;

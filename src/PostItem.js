@@ -12,7 +12,9 @@ class PostItem extends React.Component {
     // console.log('PostItem', post.title, author, post.date);
     return (
       <article id={'post-' + post.id}>
-        <h2 data-contains="title" dangerouslySetInnerHTML={{__html: post.title}} />
+        <h2 data-contains="title">
+          <Link to={post.link} dangerouslySetInnerHTML={{__html: post.title}} />
+        </h2>
         <div className="meta">
   				<small>{post.date} by <Link to={"/author/" + author.slug} title={"Articles par " + author.name} rel="author">{author.name}</Link></small>
   			</div>

@@ -20,7 +20,7 @@ class SinglePostOrNotFound extends React.Component {
   constructor(props) {
     super(props);
     console.log('SinglePostOrNotFound', this.props);
-    this.slug = this.props.match.params.slug;
+    this.slug = this.props.match.params.postname;
 
   }
 

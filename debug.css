@@ -1,0 +1,13 @@
+.toolbar {
+  padding: 4px;
+  background: #555;
+  color: #ffe;
+  font-size: 75%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.wrapper {
+  max-width: 70%;
+  margin: 0 2% 0 27%;
+}

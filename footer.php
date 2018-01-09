@@ -1,4 +1,12 @@
 <?php
+$permalink_bits = explode( '/', get_option( 'permalink_structure' ) );
+var_dump($permalink_bits);
+array_shift( $permalink_bits );
+array_pop( $permalink_bits );
+$permalink_struct = array_reduce($permalink_bits, function( $str, $bit ) {
+		return $str . '/:' . str_replace( '%', '', $bit );
+}, '' );
+
 $users = array_map( function( $user ) {
 	return [
 		'id'   => $user->ID,
@@ -22,7 +30,8 @@ $state = json_encode( [
 		'strings'      => isset( $strings ) ? $strings : [],
 		'postsPerPage' => get_option('posts_per_page'),
 		'users'        => $users,
-		'categories'   => $categories
+		'categories'   => $categories,
+		'permaStruct'  => $permalink_struct
 	],
 	'posts'       => [
 		'query'     => '',
