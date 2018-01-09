@@ -28,7 +28,7 @@ add_action( 'after_setup_theme', 'reago_add_menu_support' );
 function reago_add_menu_support() {
 	// add_theme_support( 'menus' );
 	register_nav_menus( array(
-		'main-menu' => __( 'Main Menu', 'wpbfmtheme' )
+		'main-menu' => __( 'Main Menu', 'reago-theme' )
 	) );
 }
 
@@ -41,9 +41,9 @@ add_action( 'widgets_init', 'reago_register_sidebar' );
 function reago_register_sidebar() {
 	// Area 1, located at the top of the sidebar.
 	register_sidebar( array(
-		'name' => __( 'Primary Widget Area', 'wpbfmtheme' ),
+		'name' => __( 'Primary Widget Area', 'reago-theme' ),
 		'id' => 'bmft-sidebar',
-		'description' => __( 'The primary widget area', 'wpbfmtheme' ),
+		'description' => __( 'The primary widget area', 'reago-theme' ),
 		'before_widget' => '<li>',
 		'after_widget' => '</li>',
 		'before_title' => '<h3>',

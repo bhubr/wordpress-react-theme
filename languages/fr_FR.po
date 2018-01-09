@@ -2,11 +2,34 @@
 # This file is distributed under the same license as the Reago Theme.
 msgid ""
 msgstr ""
+"Project-Id-Version: Reago Theme - 0.2.0 - Development\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-09 16:43+0100\n"
 "PO-Revision-Date: 2018-01-02 12:37:17+0000\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Poedit 2.0.5\n"
-"Language: fr\n"
-"Project-Id-Version: Reago Theme - 0.2.0 - Development\n"
+
+#: functions.php:31
+msgid "Main Menu"
+msgstr "Menu Principal"
+
+#: functions.php:44
+msgid "Primary Widget Area"
+msgstr "Zone de widgets principale"
+
+#: functions.php:46
+msgid "The primary widget area"
+msgstr "La zone de widgets principale"
+
+#: 404.php:3
+#, php-format
+msgid "You landed in the wrong place! Page %s doesn't exist."
+msgstr "Vous avez atterri au mauvais endroit ! La page %s n'existe pas."
+
+#: 404.php:4
+msgid "Why don't you check out one of our latest articles?"
+msgstr "Pourquoi ne pas jeter un oeil à un de nos derniers articles ?"
