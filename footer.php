@@ -1,6 +1,5 @@
 <?php
 $permalink_bits = explode( '/', get_option( 'permalink_structure' ) );
-var_dump($permalink_bits);
 array_shift( $permalink_bits );
 array_pop( $permalink_bits );
 $permalink_struct = array_reduce($permalink_bits, function( $str, $bit ) {
@@ -33,6 +32,13 @@ $state = json_encode( [
 		'categories'   => $categories,
 		'permaStruct'  => $permalink_struct
 	],
+	'comments'    => [
+		'form'      => [
+			'isPending' => false,
+		  'error'     => null,
+		  'statusMessage' => 'testtest'
+		]
+	],
 	'posts'       => [
 		'query'     => '',
 		'items'     => $posts_mapped,
@@ -43,6 +49,7 @@ $state = json_encode( [
 			<script type='text/javascript'>
 			window.INITIAL_STATE = <?php echo $state; ?>;
 			window.REST_URL = '<?php echo get_option('siteurl'); ?>/wp-json/wp/v2';
+			window.COMMENTS_POST_URL = '<?php echo get_option('siteurl'); ?>/wp-comments-post.php';
 			</script>
 			<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/bundle.react.js?ver=0.2.1-alpha&t=<?php echo time(); ?>'></script>
 		</div> <!-- close .wrapper -->

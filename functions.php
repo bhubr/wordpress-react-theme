@@ -1,5 +1,4 @@
 <?php
-var_dump($_POST);
 
 add_action( 'wp_enqueue_scripts', 'reago_enqueue_styles' );
 

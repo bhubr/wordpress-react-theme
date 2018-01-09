@@ -6,5 +6,6 @@ export default function transformPost(post) {
       post[field] = value;
     }
   }
+  post.link = post.link.substr(window.location.origin.length);
   return post;
 }

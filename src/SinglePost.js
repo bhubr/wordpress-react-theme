@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PostItem from './PostItem';
 import ToolBar from './ToolBar';
 import NotFound from './NotFound';
+import CommentForm from './CommentForm';
+
 
 // class SinglePost extends React.Component {
 //   constructor(props) {
@@ -33,7 +35,10 @@ class SinglePostOrNotFound extends React.Component {
     const post = this.props.status === 404 ? undefined :
       posts.find(p => (p.slug === this.slug));
     return post ?
-      <PostItem post={post} /> :
+      (<div>
+        <PostItem post={post} />
+        <CommentForm />
+      </div>) :
       <NotFound path={this.props.path} />;
   }
 }
