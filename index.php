@@ -20,7 +20,7 @@ require 'header.php';
 			 		 	'post_id' => $post->ID,
 	 					'status' => 'approve' //Change this to the type of comments to be displayed
 			 ] );
-			 $commentsPerPost = [ $post->ID => $comments ];
+			 $commentsPerPost = [ (int)$post->ID => $comments ];
 	 endif;
 		?>
 	<?php endwhile; ?>

@@ -23,7 +23,6 @@ class SinglePostOrNotFound extends React.Component {
     super(props);
     console.log('SinglePostOrNotFound', this.props);
     this.slug = this.props.match.params.postname;
-
   }
 
   componentWillMount() {
@@ -31,16 +30,20 @@ class SinglePostOrNotFound extends React.Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, commentsPerPost } = this.props;
     const post = this.props.status === 404 ? undefined :
       posts.find(p => (p.slug === this.slug));
-    return post ?
-      (<div>
+    if(post) {
+      const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
+      return (<div>
         <PostItem post={post} />
-        <CommentsTemplate />
+        <CommentsTemplate comments={comments} depth={1} parent={0} />
         <CommentForm />
-      </div>) :
-      <NotFound path={this.props.path} />;
+      </div>);
+    }
+    else {
+      return (<NotFound path={this.props.path} />);
+    }
   }
 }
 
@@ -49,7 +52,8 @@ const mapStateToProps = state => {
   return {
     path: state.path,
     status: state.status,
-    posts: state.posts.items
+    posts: state.posts.items,
+    commentsPerPost: state.comments.perPost
   };
 }
 
