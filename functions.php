@@ -20,16 +20,17 @@ function reago_enqueue_styles() {
 
 }
 
-add_action( 'after_setup_theme', 'reago_add_menu_support' );
+add_action( 'after_setup_theme', 'reago_after_setup' );
 
 /**
  * Add support for menus
  */
-function reago_add_menu_support() {
+function reago_after_setup() {
 	// add_theme_support( 'menus' );
 	register_nav_menus( array(
 		'main-menu' => __( 'Main Menu', 'reago-theme' )
 	) );
+	load_theme_textdomain( 'reago-theme', get_template_directory() . '/languages' );
 }
 
 
