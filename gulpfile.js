@@ -85,7 +85,7 @@ function makeZip(cb) {
 
 gulp.task('watch', function() {
   gulp.watch(['src'], buildClient);
-  gulp.watch(watchedFiles, makeZip);
+  // gulp.watch(watchedFiles, makeZip);
 });
 
 gulp.task('buildClient', function() {
@@ -94,4 +94,4 @@ gulp.task('buildClient', function() {
 
 gulp.task('makeZip', makeZip);
 
-gulp.task('default', gulp.series('buildClient', 'makeZip', 'watch'));
+gulp.task('default', gulp.series('buildClient', 'watch'));
