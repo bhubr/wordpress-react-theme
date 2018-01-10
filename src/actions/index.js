@@ -8,9 +8,9 @@ export const POST_COMMENT_REQUEST = 'POST_COMMENT_REQUEST';
 export const POST_COMMENT_SUCCESS = 'POST_COMMENT_SUCCESS';
 export const POST_COMMENT_FAILURE = 'POST_COMMENT_FAILURE';
 
-export function fetchPostsBySlug(slug) {
-  return fetchPosts({ slug });
-}
+// export function fetchPostsBySlug(slug) {
+//   return fetchPosts({ slug });
+// }
 
 export function requestPosts(query) {
   return {

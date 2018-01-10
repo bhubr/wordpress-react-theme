@@ -50,18 +50,28 @@ export default function(params) {
   let query = {};
   console.error('### mapRouteParamsToQuery', params);
 
+  // Single post or page
+  if (params.postname) {
+    query = { slug: params.postname };
+  }
   // Year archive
-  if (params.year && ! params.year) {
+  else if (params.year && ! params.year) {
     query = getYearArchiveQuery(year);
   }
+  // Month archive
   else if (params.year && params.monthnum) {
     query = getMonthArchiveQuery(params.year, params.monthnum);
   }
+  // Author archive
   else if(params.author) {
     query = getAuthorArchive(params.author);
   }
+  // Category archive
   else if(params.category) {
     query = getCategoryArchive(params.category);
+  }
+  else {
+    throw new Error('Nothing matched in mapRouteParamsToQuery');
   }
   const pageParam = page ? { page } : {};
   return Object.assign(query, pageParam, { per_page: postsPerPage });

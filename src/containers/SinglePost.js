@@ -5,6 +5,9 @@ import ToolBar from './ToolBar';
 import NotFound from '../components/NotFound';
 import CommentForm from './CommentForm';
 import CommentsTemplate from '../components/CommentsTemplate';
+import mapRouteParamsToQuery from '../utils/mapRouteParamsToQuery';
+import didRouteParamsChange from '../utils/didRouteParamsChange';
+import { fetchPosts } from '../actions';
 
 // class SinglePost extends React.Component {
 //   constructor(props) {
@@ -32,6 +35,11 @@ class SinglePostOrNotFound extends React.Component {
   componentWillReceiveProps(nextProps) {
     console.log('SinglePostOrNotFound componentWillReceiveProps', nextProps);
     console.log(this.props.match.params, nextProps.match.params);
+
+    if( didRouteParamsChange( this.props, nextProps ) ) {
+      const query = mapRouteParamsToQuery(nextProps.match.params);
+      this.props.requestPosts(query);
+    }
   }
 
   render() {
@@ -66,10 +74,10 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = (state, dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    requestPost: slug => requestPostsBySlug(slug)
-  }
-}
+    requestPosts: query => dispatch(fetchPosts(query))
+  };
+};
 
-export default connect(mapStateToProps)(SinglePostOrNotFound);
+export default connect(mapStateToProps, mapDispatchToProps)(SinglePostOrNotFound);

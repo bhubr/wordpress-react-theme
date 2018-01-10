@@ -7,7 +7,7 @@ import {
   Switch
 } from 'react-router-dom';
 import SinglePost from '../containers/SinglePost';
-import MultiplePost from './containers/MultiplePost';
+import MultiplePost from '../containers/MultiplePost';
 import ToolBar from '../containers/ToolBar';
 // import NotFound from './NotFound';
 
