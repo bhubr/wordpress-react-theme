@@ -1,5 +1,5 @@
-import serialize from '../serialize';
-import transformPost from '../transformPost';
+import serialize from '../utils/serialize';
+import transformPost from '../utils/transformPost';
 
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';

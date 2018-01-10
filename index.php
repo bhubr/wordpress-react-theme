@@ -8,7 +8,7 @@ require 'header.php';
 		<article id="post-<?php echo $post->ID; ?>">
 			<h2 data-contains="title"><a href=" <?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 			<div class="meta">
-				<small><?php the_time('F jS, Y'); ?> by <?php the_author_posts_link(); ?></small>
+				<small><?php the_date('F jS, Y'); ?> by <?php the_author_posts_link(); ?></small>
 			</div>
 			<div data-contains="content" class="content"><?php the_content(); ?></div>
 		</article>

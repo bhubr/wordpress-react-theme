@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postComment } from './actions';
+import { postComment } from '../actions';
 
 class CommentForm extends React.Component {
   constructor(props) {

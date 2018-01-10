@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  fetchPosts
-} from './actions';
+import { fetchPosts } from '../actions';
 import { connect } from 'react-redux';
-import PostList from './PostList';
+import PostList from '../components/PostList';
 
-import routeParamsToQuery from './routeParamsToQuery';
+import mapRouteParamsToQuery from '../utils/mapRouteParamsToQuery';
 
 class MultiplePost extends React.Component {
   constructor(props) {
@@ -21,7 +19,7 @@ class MultiplePost extends React.Component {
 
   componentWillMount() {
     console.log('MultiplePost componentWillMount');
-    const query = routeParamsToQuery(this.props.match.params);
+    const query = mapRouteParamsToQuery(this.props.match.params);
     console.log('FIRING QUERY', query);
     this.props.requestPosts(query);
   }
@@ -36,7 +34,7 @@ class MultiplePost extends React.Component {
       // console.log('>>>>>> checking params changed', p, newParams[p], oldParams[p]);
       if (newParams[p] !== oldParams[p]) {
         // console.log('>>>>>>>>>>>>>>>>>>>>> PARAMS CHANGED', newParams[p], ' !== ', oldParams[p]);
-        const query = routeParamsToQuery(nextProps.match.params);
+        const query = mapRouteParamsToQuery(nextProps.match.params);
         this.props.requestPosts(query);
       }
     }

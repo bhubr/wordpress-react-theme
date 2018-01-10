@@ -48,7 +48,7 @@ export default function(params) {
   const { postsPerPage } = window.INITIAL_STATE.meta;
   const { page } = params;
   let query = {};
-  console.error('### routeParamsToQuery', params);
+  console.error('### mapRouteParamsToQuery', params);
 
   // Year archive
   if (params.year && ! params.year) {

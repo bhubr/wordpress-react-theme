@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import PostList from './PostList';
-import ReagoApp from './ReagoApp';
 import configureStore from './configureStore';
 import catchLinks from 'catch-links'
 import history from './history';
+import ReagoApp from './components/ReagoApp';
 
 catchLinks(window, function (href) {
     console.log('caught', href);

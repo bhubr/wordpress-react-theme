@@ -30,7 +30,8 @@ $state = json_encode( [
 		'postsPerPage' => get_option('posts_per_page'),
 		'users'        => $users,
 		'categories'   => $categories,
-		'permaStruct'  => $permalink_struct
+		'permaStruct'  => $permalink_struct,
+		'debug'        => WP_DEBUG
 	],
 	'comments'    => [
 		'form'      => [

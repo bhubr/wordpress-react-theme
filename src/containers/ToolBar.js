@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PostList from './PostList';
-import PostSummary from './PostSummary';
-import { fetchPosts } from './actions';
+import PostList from '../components/PostList';
+import PostSummary from '../components/PostSummary';
+import { fetchPosts } from '../actions';
 
 class ToolBar extends React.Component {
   constructor(props) {

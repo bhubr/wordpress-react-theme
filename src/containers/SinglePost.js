@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PostItem from './PostItem';
+import PostItem from '../components/PostItem';
 import ToolBar from './ToolBar';
-import NotFound from './NotFound';
+import NotFound from '../components/NotFound';
 import CommentForm from './CommentForm';
-import CommentsTemplate from './CommentsTemplate';
+import CommentsTemplate from '../components/CommentsTemplate';
 
 // class SinglePost extends React.Component {
 //   constructor(props) {
@@ -27,6 +27,11 @@ class SinglePostOrNotFound extends React.Component {
 
   componentWillMount() {
 
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('SinglePostOrNotFound componentWillReceiveProps', nextProps);
+    console.log(this.props.match.params, nextProps.match.params);
   }
 
   render() {
