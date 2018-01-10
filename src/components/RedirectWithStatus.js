@@ -8,7 +8,7 @@ const RedirectWithStatus = ({ from, to, status }) => (
   <Route render={({ staticContext }) => {
     // there is no `staticContext` on the client, so
     // we need to guard against that here
-    console.log('context', staticContext, from, to, status);
+    // console.log('context', staticContext, from, to, status);
     if (staticContext) {
       staticContext.status = status;
     }

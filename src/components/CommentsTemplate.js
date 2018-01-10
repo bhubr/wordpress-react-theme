@@ -12,7 +12,7 @@ class CommentsTemplate extends React.Component {
   render() {
     const { depth, parent, post } = this.props;
     const comments = this.props.comments.filter(c => (c.parent == parent));
-    console.log('CommentsTemplate', parent, depth, comments);
+    // console.log('CommentsTemplate', parent, depth, comments);
     return (
       <ol>
       {comments.map(comment => <li key={comment.id} className={"comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent"} id="comment-1">

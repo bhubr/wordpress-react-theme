@@ -22,8 +22,8 @@ const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_E
 export default function initStore(initialState) {
   return createStore(rootReducer, initialState, composeEnhancers(
     applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
+      thunkMiddleware
+      , loggerMiddleware
     )
   ));
 }

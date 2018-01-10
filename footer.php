@@ -22,6 +22,7 @@ $categories = array_map( function( $cat ) {
 	];
 }, get_terms( 'category' ) );
 // var_dump($posts_mapped);
+
 $state = json_encode( [
 	'meta'           => [
 		'path'         => $_SERVER['REQUEST_URI'],
@@ -42,10 +43,11 @@ $state = json_encode( [
 		'perPost'   => $commentsPerPost
 	],
 	'posts'       => [
-		'query'     => '',
+		'query'     => [],
 		'items'     => $posts_mapped,
 		'isLoading' => false,
-		'lastError' => null
+		'lastError' => null,
+		'perUrl'   => isset( $posts_per_url ) ? [ $_SERVER['REQUEST_URI'] => $posts_per_url ] : []
 	]
 ] ); ?>
 			<script type='text/javascript'>

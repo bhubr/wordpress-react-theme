@@ -19,10 +19,12 @@ export function requestPosts(query) {
   }
 }
 
-export function requestPostsSuccess(posts) {
+export function requestPostsSuccess(posts, url, isSingle) {
   return {
     type: FETCH_POSTS_SUCCESS,
-    posts
+    posts,
+    url,
+    isSingle
   }
 }
 
@@ -33,18 +35,21 @@ export function requestPostsFailure(error) {
   }
 }
 
-export function fetchPosts(query) {
-  console.log('### FETCH POSTS #1', query);
+export function fetchPosts(query, url) {
+  // console.log('### FETCH POSTS #1', query, url);
+  if(! url) {
+    throw new Error('PLEASE provide url for fetchPosts');
+  }
   return dispatch => {
     dispatch(requestPosts(query));
     const qs = serialize(query);
     const pathWithQueryString = '/posts' + (qs ? '?' + qs : '');
-    console.log('### FETCH POSTS #2', REST_URL + pathWithQueryString);
+    // console.log('### FETCH POSTS #2', REST_URL + pathWithQueryString);
     fetch(REST_URL + pathWithQueryString)
     .then(response => response.json())
     .then(posts => {
       dispatch(requestPostsSuccess(
-        posts.map(transformPost)
+        posts.map(transformPost), url, typeof query.slug === 'string'
       ));
     })
     .catch(err => dispatch(requestPostsFailure(err)));
@@ -72,7 +77,7 @@ export function reqPostCommentFailure(error) {
 }
 
 export function postComment(payload) {
-  console.log('### POST COMMENT #1', payload);
+  // console.log('### POST COMMENT #1', payload);
   return dispatch => {
     dispatch(reqPostComment(payload));
     fetch(COMMENTS_POST_URL, {
@@ -85,7 +90,7 @@ export function postComment(payload) {
     })
     // .then(response => response.json())
     .then(response => {
-      console.log('RECV ON POST COMMENT RETURN');
+      // console.log('RECV ON POST COMMENT RETURN');
       dispatch(reqPostCommentSuccess(
       ));
     })

@@ -12,7 +12,7 @@ import { fetchPosts } from '../actions';
 // class SinglePost extends React.Component {
 //   constructor(props) {
 //     super(props);
-//     console.log('SinglePost', this);
+//     // console.log('SinglePost', this);
 //   }
 //   render() {
 //     return(
@@ -24,7 +24,7 @@ import { fetchPosts } from '../actions';
 class SinglePostOrNotFound extends React.Component {
   constructor(props) {
     super(props);
-    console.log('SinglePostOrNotFound', this.props);
+    // console.log('SinglePostOrNotFound', this.props);
     this.slug = this.props.match.params.postname;
   }
 
@@ -34,18 +34,31 @@ class SinglePostOrNotFound extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     console.log('SinglePostOrNotFound componentWillReceiveProps', nextProps);
-    console.log(this.props.match.params, nextProps.match.params);
+    // console.log(this.props.match.params, nextProps.match.params);
 
     if( didRouteParamsChange( this.props, nextProps ) ) {
-      const query = mapRouteParamsToQuery(nextProps.match.params);
-      this.props.requestPosts(query);
+      const { params, url } = nextProps.match;
+      const query = mapRouteParamsToQuery(params);
+      this.props.fetchPosts(query, url);
     }
   }
 
   render() {
-    const { posts, commentsPerPost } = this.props;
-    const post = this.props.status === 404 ? undefined :
-      posts.find(p => (p.slug === this.slug));
+    console.log('SinglePostOrNotFound render');
+    const { posts, postsPerUrl, commentsPerPost, match } = this.props;
+    const postId = postsPerUrl[match.url];
+    // const post = this.props.status === 404 ? undefined :
+    //   posts.find(p => (p.slug === this.slug));
+    let post = this.props.status === 404 ? undefined :
+      posts.find(p => (p.id === postId));
+    if(post) {
+      this.previousPost = post;
+    }
+    else {
+      post = this.previousPost;
+    }
+    console.log('postsPerUrl/url/postId/post', postsPerUrl, match.url, postId, post);
+
 
     if(post) {
       const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
@@ -70,13 +83,14 @@ const mapStateToProps = state => {
     path: state.path,
     status: state.status,
     posts: state.posts.items,
+    postsPerUrl: state.posts.perUrl,
     commentsPerPost: state.comments.perPost
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestPosts: query => dispatch(fetchPosts(query))
+    fetchPosts: (query, url) => dispatch(fetchPosts(query, url))
   };
 };
 

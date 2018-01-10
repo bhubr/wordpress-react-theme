@@ -8,39 +8,41 @@ import didRouteParamsChange from '../utils/didRouteParamsChange';
 class MultiplePost extends React.Component {
   constructor(props) {
     super(props);
-    console.log('MultiplePost constructor');
+    // console.log('MultiplePost constructor');
   }
   render() {
-    console.log('MultiplePost render');
+    // console.log('MultiplePost render');
     return (
       <PostList posts={this.props.posts} />
     );
   }
 
   componentWillMount() {
-    console.log('MultiplePost componentWillMount');
-    const query = mapRouteParamsToQuery(this.props.match.params);
-    console.log('FIRING QUERY', query);
-    this.props.requestPosts(query);
+    // console.log('MultiplePost componentWillMount');
+    const { params, url } = this.props.match;
+    const query = mapRouteParamsToQuery(params);
+    // console.log('FIRING QUERY', query, url);
+    this.props.fetchPosts(query, url);
   }
 
   // https://stackoverflow.com/questions/32846337/how-to-fetch-the-new-data-in-response-to-react-router-change-with-redux
   componentWillReceiveProps(nextProps) {
-    console.log('MultiplePost componentWillReceiveProps', nextProps);
-    // console.log(this.props.match.params, nextProps.match.params);
+    // console.log('MultiplePost componentWillReceiveProps', nextProps);
+    // // console.log(this.props.match.params, nextProps.match.params);
     // const oldParams = this.props.match.params;
     // const newParams = nextProps.match.params;
     // for(let p in newParams) {
-    //   // console.log('>>>>>> checking params changed', p, newParams[p], oldParams[p]);
+    //   // // console.log('>>>>>> checking params changed', p, newParams[p], oldParams[p]);
     //   if (newParams[p] !== oldParams[p]) {
-    //     // console.log('>>>>>>>>>>>>>>>>>>>>> PARAMS CHANGED', newParams[p], ' !== ', oldParams[p]);
+    //     // // console.log('>>>>>>>>>>>>>>>>>>>>> PARAMS CHANGED', newParams[p], ' !== ', oldParams[p]);
     //     const query = mapRouteParamsToQuery(nextProps.match.params);
-    //     this.props.requestPosts(query);
+    //     this.props.fetchPosts(query);
     //   }
     // }
     if( didRouteParamsChange( this.props, nextProps ) ) {
-      const query = mapRouteParamsToQuery(nextProps.match.params);
-      this.props.requestPosts(query);
+      const { params, url } = nextProps.match;
+      const query = mapRouteParamsToQuery(params);
+      this.props.fetchPosts(query, url);
     }
   }
 }
@@ -56,7 +58,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestPosts: query => dispatch(fetchPosts(query))
+    fetchPosts: (query, url) => dispatch(fetchPosts(query, url))
   };
 };
 

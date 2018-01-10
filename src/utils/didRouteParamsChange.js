@@ -4,11 +4,11 @@ export default function(oldProps, nextProps) {
 
   for(let p in nextParams) {
     if (nextParams[p] !== oldParams[p]) {
-      console.log('didRouteParamsChange: CHANGED', p, oldParams[p], '==>', nextParams[p]);
+      // console.log('didRouteParamsChange: CHANGED', p, oldParams[p], '==>', nextParams[p]);
       return true;
     }
   }
 
-  console.log('didRouteParamsChange: UNCHANGED');
+  // console.log('didRouteParamsChange: UNCHANGED');
   return false;
 }

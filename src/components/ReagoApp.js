@@ -14,7 +14,7 @@ import ToolBar from '../containers/ToolBar';
 // class QueryRoute extends React.Component {
 //   render() {
 //     const { component: Component, user, ...rest } = this.props;
-//     console.log('QueryRoute', arguments, this, user, rest);
+//     // console.log('QueryRoute', arguments, this, user, rest);
 //     return (
 //       <Route {...rest} render={props => (
 //         <Component {...props}/>

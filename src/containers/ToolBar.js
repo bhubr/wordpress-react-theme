@@ -11,14 +11,14 @@ class ToolBar extends React.Component {
       year: 2018,
       month: 1
     };
-    console.log('### init ToolBar', this.props, this.state);
+    // console.log('### init ToolBar', this.props, this.state);
     this.changeYear = this.changeYear.bind(this);
     this.changeMonth = this.changeMonth.bind(this);
     this.fetchMonthArchive = this.fetchMonthArchive.bind(this);
   }
 
   changeYear(e) {
-    console.log('changeYear', e.target.value);
+    // console.log('changeYear', e.target.value);
     const year = parseInt(e.target.value);
     this.setState((prevState, props) => (
       Object.assign({ ...prevState }, { year })
@@ -26,7 +26,7 @@ class ToolBar extends React.Component {
   }
 
   changeMonth(e) {
-    console.log('changeYear', e.target.value);
+    // console.log('changeYear', e.target.value);
     const month = parseInt(e.target.value);
     this.setState((prevState, props) => (
       Object.assign({ ...prevState }, { month })
@@ -34,7 +34,7 @@ class ToolBar extends React.Component {
   }
 
   fetchMonthArchive() {
-    console.log('fetchMonthArchive', this.state, this.props);
+    // console.log('fetchMonthArchive', this.state, this.props);
     // 1977-04-22T06:00:00Z
     let { month, year } = this.state;
     let paddedMonth = (month < 10 ? '0' : '') + month;
@@ -47,7 +47,7 @@ class ToolBar extends React.Component {
     }
     paddedMonth = (month < 10 ? '0' : '') + month;
     const before = `${year}-${paddedMonth}-01T00:00:00Z`;
-    console.log(before, after);
+    // console.log(before, after);
     this.props.fetchPosts({ before, after });
   }
 

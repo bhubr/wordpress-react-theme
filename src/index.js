@@ -8,7 +8,7 @@ import history from './history';
 import ReagoApp from './components/ReagoApp';
 
 catchLinks(window, function (href) {
-    console.log('caught', href);
+    // console.log('caught', href);
     history.push(href);
 });
 
@@ -21,7 +21,13 @@ const { INITIAL_STATE } = window;
 if(Array.isArray(INITIAL_STATE.meta.strings)) {
   INITIAL_STATE.meta.strings = {};
 }
-console.log('INITIAL STATE', INITIAL_STATE);
+if(Array.isArray(INITIAL_STATE.posts.query)) {
+  INITIAL_STATE.posts.query = {};
+}
+if(Array.isArray(INITIAL_STATE.posts.perUrl)) {
+  INITIAL_STATE.posts.perUrl = {};
+}
+// console.log('INITIAL STATE', INITIAL_STATE);
 const store = configureStore(INITIAL_STATE);
 const rootEl = document.getElementById('root');
 

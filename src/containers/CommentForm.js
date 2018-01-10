@@ -17,7 +17,7 @@ class CommentForm extends React.Component {
       payload[ input.name ] = input.value;
     }
     payload.comment = textarea[0].value;
-    console.log('ONSUBMIT COMMENT', payload);
+    // console.log('ONSUBMIT COMMENT', payload);
     this.props.postComment(payload);
   }
   render() {
