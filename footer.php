@@ -21,7 +21,7 @@ $categories = array_map( function( $cat ) {
 		'slug' => $cat->slug
 	];
 }, get_terms( 'category' ) );
-
+var_dump($commentsPerPost);
 $state = json_encode( [
 	'meta'           => [
 		'path'         => $_SERVER['REQUEST_URI'],

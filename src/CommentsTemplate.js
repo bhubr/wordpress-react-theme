@@ -11,11 +11,11 @@ class CommentsTemplate extends React.Component {
   }
   render() {
     const { depth, parent } = this.props;
-    console.log('CommentsTemplate', parent, depth);
-    const comments = this.props.comments.filter(c => (c.comment_parent == parent));
+    const comments = this.props.comments.filter(c => (c.parent == parent));
+    console.log('CommentsTemplate', parent, depth, comments);
     return (
       <ol>
-      {comments.map(comment => <li key={comment.comment_ID} className={"comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent"} id="comment-1">
+      {comments.map(comment => <li key={comment.id} className={"comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent"} id="comment-1">
 				<div id="div-comment-1" className="comment-body">
   				<div className="comment-author vcard">
   			   <img alt="" src="http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=74&amp;d=mm&amp;r=g" srcSet="http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=148&amp;d=mm&amp;r=g 2x" className="avatar avatar-74 photo" height="74" width="74" />
@@ -27,7 +27,7 @@ class CommentsTemplate extends React.Component {
             <Link to="/2018/01/post-slug/#comment-1">9 janvier 2018 à 18 h 39 min</Link>
           </div>
 
-      		<p>{ comment.comment_content }</p>
+      		<p>{ comment.content }</p>
 
       		<div className="reply">
             <Link rel="nofollow"
@@ -39,7 +39,7 @@ class CommentsTemplate extends React.Component {
             </Link>
           </div>
 				</div>
-    		<CommentsTemplate comments={comments} parent={comment.comment_ID} depth={depth + 1} />
+    		<CommentsTemplate comments={this.props.comments} parent={comment.id} depth={depth + 1} />
       </li>)}
       </ol>
     );

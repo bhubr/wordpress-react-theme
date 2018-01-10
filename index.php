@@ -18,9 +18,10 @@ require 'header.php';
 	     comments_template();
 			 $comments = get_comments( [
 			 		 	'post_id' => $post->ID,
-	 					'status' => 'approve' //Change this to the type of comments to be displayed
+						'order'   => 'ASC'
+	 					// 'status' => 'approve' //Change this to the type of comments to be displayed
 			 ] );
-			 $commentsPerPost = [ (int)$post->ID => $comments ];
+			 $commentsPerPost = [ (int)$post->ID => reago_build_comments_tree( $comments ) ];
 	 endif;
 		?>
 	<?php endwhile; ?>

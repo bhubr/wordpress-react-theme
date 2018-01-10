@@ -52,28 +52,80 @@ function reago_register_sidebar() {
 
 }
 
-function get_relative_link( $post_id ) {
-	$permalink = get_permalink( $post_id );
-	$site_url_length = strlen( get_option( 'siteurl' ) );
-	return substr( $permalink, $site_url_length );
-}
-
 /**
  * Map a Post object to a REST API-like structure
  */
- function reago_map_post_fields( $post ) {
-	 // $carry[ $post->ID ] =
-   return [
-		 'id'      => $post->ID,
-		 'title'   => $post->post_title,
-		 'content' => $post->post_content,
-		 'slug'    => $post->post_name,
-		 'link'    => get_relative_link( $post->ID ),
-		 'author'  => (int)$post->post_author,
-		 'date'    => $post->post_date
-	 ];
-	 // return $carry;
- }
+ function reago_map_post_fields( $posts ) {
+	 $site_url_length = strlen( get_option( 'siteurl' ) );
+	 return array_map( function( $post ) use( $site_url_length ) {
+		 $permalink = get_permalink( $post->ID );
+	   return [
+			 'id'      => $post->ID,
+			 'title'   => $post->post_title,
+			 'content' => $post->post_content,
+			 'slug'    => $post->post_name,
+			 'link'    => substr( $permalink, $site_url_length ),
+			 'author'  => (int)$post->post_author,
+			 'date'    => $post->post_date
+		 ];
+	 }, $posts );
+}
+
+// function build_comments_tree( $comments, $parent = 0 ) {
+// 	//echo "COMMENTS BEFORE filtering against $parent ";var_dump($comments);echo "\n";
+// 	$this_level_comms = array_filter( $comments, function( $comment ) use( $parent ) {
+// 		// var_dump($comment); echo $parent . ' ' . gettype($parent) . "\n\n";
+// 		return $comment['parent'] === $parent;
+// 	} );
+// 	// echo "parent after filtering root: $parent\n\n";
+// 	// echo "filtered P ==> "; var_dump($this_level_comms); // echo " C ===> "; var_dump($comments); echo "\n\n";
+// 	$children = array_filter( $comments, function( $comment ) use( $parent ) {
+// 		// var_dump($comment); echo $parent . ' ' . gettype($parent) . "\n\n";
+// 		return $comment['parent'] !== $parent;
+// 	} );
+// 	// echo "children "; var_dump($children); echo "\n\n";
+// 	$mapped_thing = array_map( function( $parent_comm ) use( $children ) {
+// 		echo "parent before assigning children ===>   ";var_dump($parent_comm); echo "\n\n";
+// 		$parent_comm['children'] = build_comments_tree( $children, $parent_comm['id'] );
+// 		echo "parent after assigning children ===>   ";var_dump($parent_comm); echo "\n\n";
+// 		return $parent_comm;
+// 	}, $this_level_comms );
+//
+// 	var_dump('MAPPED THING BEFORE RETURNING');
+// 	var_dump($mapped_thing); echo "\n\n\n";
+// 	return $mapped_thing;
+// }
+
+function build_comments_tree( $comments, $parent, $indent = 0 ) {
+		$output = [];
+		foreach( $comments as $idx => $comment ) {
+				printf("%{$indent}s current parent: %d, this parent: %d, this id: %d, this content: %s\n", "", $parent, $comment['parent'], $comment['id'], substr($comment['content'], 0, 30));
+				if( $comment['parent'] === $parent ) {
+						$output[] = $comment;
+						unset( $comments[ $idx ] );
+						$children = build_comments_tree( $comments, $comment['id'], $indent + 4 );
+						if( !empty( $children ) ) {
+							$comment['children'] = $children;
+						}
+				}
+		}
+		return $output;
+}
+
+function reago_build_comments_tree( $comments ) {
+	// var_dump($comments);
+	// return [];
+	return array_map( function( $comment ) {
+		return [
+			'id'      => (int)$comment->comment_ID,
+			'post'    => (int)$comment->comment_post_ID,
+			'parent'  => (int)$comment->comment_parent,
+			'content' => $comment->comment_content
+		];
+	}, $comments );
+
+	// return build_comments_tree( $comments, $parent = 0 );
+}
 
 /**
  * Map a Post slug to an id

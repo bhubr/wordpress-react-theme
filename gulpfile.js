@@ -33,7 +33,7 @@ const themeName = 'reago';
 function buildClient(watch, done) {
   var bundler =
     browserify('./src/index.js', { debug: true })
-      .plugin(pathmod(), {mods: [
+      .plugin(pathmod, {mods: [
         pathmod.mod.dir('node_modules', __dirname + '/node_modules'),
       ]})
       // Transform JSX      https://github.com/andreypopp/reactify/issues/58
