@@ -62,7 +62,7 @@ function reago_register_sidebar() {
 	   return [
 			 'id'      => $post->ID,
 			 'title'   => $post->post_title,
-			 'content' => $post->post_content,
+			 'content' => apply_filters( 'the_content', $post->post_content ),
 			 'slug'    => $post->post_name,
 			 'link'    => substr( $permalink, $site_url_length ),
 			 'author'  => (int)$post->post_author,

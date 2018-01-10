@@ -33,11 +33,15 @@ class SinglePostOrNotFound extends React.Component {
     const { posts, commentsPerPost } = this.props;
     const post = this.props.status === 404 ? undefined :
       posts.find(p => (p.slug === this.slug));
+
     if(post) {
       const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
       return (<div>
         <PostItem post={post} />
-        <CommentsTemplate comments={comments} depth={1} parent={0} />
+        <h2 className="comments-title">
+            9 thoughts on "<span dangerouslySetInnerHTML={{__html: post.title }} />"
+        </h2>
+        <CommentsTemplate post={post} comments={comments} depth={1} parent={0} />
         <CommentForm />
       </div>);
     }

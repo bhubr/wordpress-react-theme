@@ -10,7 +10,7 @@ class CommentsTemplate extends React.Component {
     // "return addComment.moveForm( &quot;div-comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;253&quot; )"
   }
   render() {
-    const { depth, parent } = this.props;
+    const { depth, parent, post } = this.props;
     const comments = this.props.comments.filter(c => (c.parent == parent));
     console.log('CommentsTemplate', parent, depth, comments);
     return (
