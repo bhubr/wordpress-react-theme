@@ -134,3 +134,36 @@ function reago_build_comments_tree( $comments ) {
 	//  $carry[ $post->post_name ] = $post->ID;
 	//  return $carry;
  // }
+
+if( WP_DEBUG ) {
+ add_action( 'wp_ajax_nopriv_reago_dbg', 'reago_set_debug_options' );
+
+ function reago_set_debug_options() {
+	 unset( $_POST['action'] );
+	 $options = [];
+	 foreach( $_POST as $k => $v ) {
+		 $options[ $k ] = (int)$v;
+	 }
+	 update_option( 'reago_dbg', $options );
+	 die( json_encode( $options ) );
+ }
+
+ add_action( 'rest_api_init', 'reago_alter_rest_api' );
+
+ function reago_alter_rest_api() {
+	 $dbg_opts = get_option('reago_dbg');
+	 $timeout = $dbg_opts['timeout'];
+	 $http_status = $dbg_opts['http-status'];
+	 if( $timeout ) {
+		 usleep( $timeout );
+	 }
+	 if( $http_status === 0 ) {
+		 $http_status = 200;
+		 die('bad json');
+	 }
+	 else if( $http_status !== 200 ) {
+		 http_response_code( $http_status );
+		 die( json_encode( ['error' => 'something bad happened'] ) );
+	 }
+ }
+}

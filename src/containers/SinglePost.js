@@ -26,10 +26,12 @@ class SinglePostOrNotFound extends React.Component {
     super(props);
     // console.log('SinglePostOrNotFound', this.props);
     this.slug = this.props.match.params.postname;
-  }
+//  }
 
-  componentWillMount() {
-
+//  componentDidMount() {
+      const { params, url } = this.props.match;
+      const query = mapRouteParamsToQuery(params);
+      this.props.fetchPosts(query, url);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,8 +46,8 @@ class SinglePostOrNotFound extends React.Component {
   }
 
   render() {
-    console.log('SinglePostOrNotFound render');
-    const { posts, postsPerUrl, commentsPerPost, match } = this.props;
+    console.log('SinglePostOrNotFound render', this.props);
+    const { posts, postsPerUrl, commentsPerPost, match, isLoading, lastError } = this.props;
     const postId = postsPerUrl[match.url];
     // const post = this.props.status === 404 ? undefined :
     //   posts.find(p => (p.slug === this.slug));
@@ -57,7 +59,7 @@ class SinglePostOrNotFound extends React.Component {
     else {
       post = this.previousPost;
     }
-    console.log('postsPerUrl/url/postId/post', postsPerUrl, match.url, postId, post);
+    console.log('postsPerUrl/url/postId/post', postsPerUrl, match.url, postId, post, isLoading, lastError);
 
 
     if(post) {
@@ -71,8 +73,17 @@ class SinglePostOrNotFound extends React.Component {
         <CommentForm />
       </div>);
     }
-    else {
+    else if(isLoading){
+      return (<div style={{ border: '4px solid blue', padding: '20px' }}>LOADING</div>);
+    }
+    else if(lastError && lastError.startsWith('404')) {
       return (<NotFound path={this.props.path} />);
+    }
+    else if(lastError) {
+      return (<div style={{ background: '#fff', border: '4px solid red', padding: '20px' }}>UNEXPECTED ERROR</div>);
+    }
+    else {
+      return (<p>Empty</p>);
     }
   }
 }
@@ -84,7 +95,9 @@ const mapStateToProps = state => {
     status: state.status,
     posts: state.posts.items,
     postsPerUrl: state.posts.perUrl,
-    commentsPerPost: state.comments.perPost
+    commentsPerPost: state.comments.perPost,
+    isLoading: state.posts.isLoading,
+    lastError: state.posts.lastError
   };
 }
 

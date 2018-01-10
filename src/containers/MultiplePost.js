@@ -12,13 +12,37 @@ class MultiplePost extends React.Component {
   }
   render() {
     // console.log('MultiplePost render');
-    return (
-      <PostList posts={this.props.posts} />
-    );
+
+    console.log('MultiplePost render', this.props);
+    const { allPosts, postsPerUrl, commentsPerPost, match, isLoading } = this.props;
+    const postIds = postsPerUrl[match.url];
+    // const post = this.props.status === 404 ? undefined :
+    //   posts.find(p => (p.slug === this.slug));
+    let posts = postIds ?
+      allPosts.filter(p => (postIds.indexOf(p.id) !== -1)) : null;
+    if(posts) {
+      this.previousPosts = posts;
+    }
+    else {
+      posts = this.previousPosts;
+    }
+    console.log('postsPerUrl/url/postId/post', postsPerUrl, match.url, postIds, posts, isLoading);
+
+    if(posts) {
+      return (
+        <PostList posts={posts} />
+      );
+    }
+    else if(isLoading){
+      return (<div style={{ height: '100%', border: '4px solid blue', padding: '100px 20px' }}>LOADING</div>);
+    }
+    else {
+      return(<div style={{ height: '100%', border: '4px solid red', padding: '20px' }}>HOLY SHIT I SHOULD BE LOADING!!!</div>);
+    }
   }
 
   componentWillMount() {
-    // console.log('MultiplePost componentWillMount');
+    console.log('MultiplePost componentWillMount');
     const { params, url } = this.props.match;
     const query = mapRouteParamsToQuery(params);
     // console.log('FIRING QUERY', query, url);
@@ -27,7 +51,7 @@ class MultiplePost extends React.Component {
 
   // https://stackoverflow.com/questions/32846337/how-to-fetch-the-new-data-in-response-to-react-router-change-with-redux
   componentWillReceiveProps(nextProps) {
-    // console.log('MultiplePost componentWillReceiveProps', nextProps);
+    console.log('MultiplePost componentWillReceiveProps', nextProps);
     // // console.log(this.props.match.params, nextProps.match.params);
     // const oldParams = this.props.match.params;
     // const newParams = nextProps.match.params;
@@ -51,7 +75,9 @@ const mapStateToProps = state => {
   return {
     path: state.path,
     status: state.status,
-    posts: state.posts.items
+    allPosts: state.posts.items,
+    postsPerUrl: state.posts.perUrl,
+    isLoading: state.posts.isLoading
   };
 }
 

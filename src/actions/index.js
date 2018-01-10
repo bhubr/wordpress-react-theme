@@ -48,9 +48,14 @@ export function fetchPosts(query, url) {
     fetch(REST_URL + pathWithQueryString)
     .then(response => response.json())
     .then(posts => {
-      dispatch(requestPostsSuccess(
-        posts.map(transformPost), url, typeof query.slug === 'string'
-      ));
+      if(typeof query.slug === 'string' && posts.length === 0) {
+        dispatch(requestPostsFailure('404 Not Found / No post with slug ' + query.slug));
+      }
+      else {
+        dispatch(requestPostsSuccess(
+          posts.map(transformPost), url, typeof query.slug === 'string'
+        ));
+      }
     })
     .catch(err => dispatch(requestPostsFailure(err)));
   };

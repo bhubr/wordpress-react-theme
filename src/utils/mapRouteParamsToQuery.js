@@ -70,9 +70,9 @@ export default function(params) {
   else if(params.category) {
     query = getCategoryArchive(params.category);
   }
-  else {
-    throw new Error('Nothing matched in mapRouteParamsToQuery');
-  }
+//  else {
+//    throw new Error('Nothing matched in mapRouteParamsToQuery');
+//  }
   const pageParam = page ? { page } : {};
   return Object.assign(query, pageParam, { per_page: postsPerPage });
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PostList from '../components/PostList';
 import PostSummary from '../components/PostSummary';
 import { fetchPosts } from '../actions';
+import serialize from '../utils/serialize';
 
 class ToolBar extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class ToolBar extends React.Component {
     this.changeYear = this.changeYear.bind(this);
     this.changeMonth = this.changeMonth.bind(this);
     this.fetchMonthArchive = this.fetchMonthArchive.bind(this);
+    this.onSubmitDebugOpts = this.onSubmitDebugOpts.bind(this);
   }
 
   changeYear(e) {
@@ -51,6 +53,30 @@ class ToolBar extends React.Component {
     this.props.fetchPosts({ before, after });
   }
 
+  onSubmitDebugOpts(e) {
+    e.preventDefault();
+    var selects = e.target.getElementsByTagName('SELECT');
+    let payload = {};
+    for(let i = 0 ; i < selects.length ; i++) {
+      const input = selects[i];
+      payload[ input.name ] = input.value;
+    }
+    payload.action = 'reago_dbg';
+    fetch('/wp-admin/admin-ajax.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, application/xml, text/play, text/html, *.*',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      body: serialize(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('ret from submit options', data);
+    })
+    .catch(console.error);
+  }
+
   render() {
     return (
       <div className="toolbar">
@@ -75,6 +101,24 @@ class ToolBar extends React.Component {
           <option value="1">January</option>
         </select>
         <button onClick={this.fetchMonthArchive}>Get month posts</button>
+        <form onSubmit={this.onSubmitDebugOpts}>
+          <label htmlFor="dbg-timeout">Timeout</label>
+          <select name="timeout" id="dbg-timeout">
+            <option value="0">0</option>
+            <option value="500000">0.5s</option>
+            <option value="1000000">1s</option>
+            <option value="120000000">120s</option>
+          </select>
+          <label htmlFor="dbg-http-status">Status</label>
+          <select name="http-status" id="dbg-http-status">
+            <option value="200">200</option>
+            <option value="0">200 with bad JSON</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+          </select>
+          <input type="submit" value="Submit" className="btn" />
+        </form>
+        <div><a href="/not-found-stuff">Not Found Link</a></div>
       </div>
     )
   }
