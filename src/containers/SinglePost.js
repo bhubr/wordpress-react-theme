@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostItem from '../components/PostItem';
-import ToolBar from './ToolBar';
+import DebugPanel from './DebugPanel';
 import NotFound from '../components/NotFound';
 import CommentForm from './CommentForm';
 import CommentsTemplate from '../components/CommentsTemplate';

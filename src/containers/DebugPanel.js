@@ -5,14 +5,14 @@ import PostSummary from '../components/PostSummary';
 import { fetchPostsIfNeeded } from '../actions';
 import serialize from '../utils/serialize';
 
-class ToolBar extends React.Component {
+class DebugPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       year: 2018,
       month: 1
     };
-    // console.log('### init ToolBar', this.props, this.state);
+    // console.log('### init DebugPanel', this.props, this.state);
     this.changeYear = this.changeYear.bind(this);
     this.changeMonth = this.changeMonth.bind(this);
     this.fetchMonthArchive = this.fetchMonthArchive.bind(this);
@@ -80,7 +80,7 @@ class ToolBar extends React.Component {
   render() {
     return (
       <div className="toolbar">
-        <h3>React Toolbar</h3>
+        <h3>React Debug Panel</h3>
         <PostList posts={this.props.posts} component={PostSummary} />
         <select value={this.state.year} onChange={this.changeYear}>
           <option value="2018">2018</option>
@@ -118,7 +118,10 @@ class ToolBar extends React.Component {
           </select>
           <input type="submit" value="Submit" className="btn" />
         </form>
-        <div><a href="/not-found-stuff">Not Found Link</a></div>
+        <div>Test Links<ul>
+          <li><a href="/not-found-stuff">Not Found Link</a></li>
+          <li>Pages: <a href="page/2/">2</a>, <a href="page/3/">3</a>, <a href="page/20/">20</a></li>
+        </ul></div>
       </div>
     )
   }
@@ -136,4 +139,4 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ToolBar);
+export default connect(mapStateToProps, mapDispatchToProps)(DebugPanel);

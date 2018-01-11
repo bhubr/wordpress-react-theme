@@ -7,6 +7,28 @@
   left: 0;
   top: 0;
 }
+.toolbar input,
+.toolbar select
+.toolbar .btn {
+  background: #aaa;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+}
+.toolbar form {
+  margin: 5px 0;
+}
+.toolbar a {
+  color: #ccf;
+}
+.toolbar a:hover {
+  color: #eef;
+}
+.toolbar ul {
+  padding-left: 5px;
+}
+.toolbar li {
+  list-style-type: none;
+}
 .wrapper {
   max-width: 65%;
   margin: 0 1% 0 32%;

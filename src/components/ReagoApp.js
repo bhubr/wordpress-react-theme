@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import SinglePost from '../containers/SinglePost';
 import MultiplePost from '../containers/MultiplePost';
-import ToolBar from '../containers/ToolBar';
+import DebugPanel from '../containers/DebugPanel';
 // import NotFound from './NotFound';
 
 // class QueryRoute extends React.Component {
@@ -25,7 +25,7 @@ import ToolBar from '../containers/ToolBar';
 
 const ReagoApp = () => {
   const { permaStruct, debug } = window.INITIAL_STATE.meta;
-  const toolBar = debug ? <ToolBar /> : '';
+  const toolBar = debug ? <DebugPanel /> : '';
   return (
       <div>
         {toolBar}
@@ -33,7 +33,7 @@ const ReagoApp = () => {
           <Route exact path="/:postname" component={SinglePost}/>
           <Route exact path={permaStruct} component={SinglePost}/>
           <Route exact path="/" component={MultiplePost}/>
-          <Route path="/author/:author" component={MultiplePost}/>
+          <Route path="/author/:author/:hasPage?/:page?" component={MultiplePost}/>
           <Route path="/category/:category" component={MultiplePost}/>
           <Route path="/:year/:monthnum/:hasPage?/:page?" component={MultiplePost}/>
           {/* some other routes
