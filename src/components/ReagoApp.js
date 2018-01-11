@@ -34,7 +34,7 @@ const ReagoApp = () => {
           <Route exact path={permaStruct} component={SinglePost}/>
           <Route exact path="/" component={MultiplePost}/>
           <Route path="/author/:author/:hasPage?/:page?" component={MultiplePost}/>
-          <Route path="/category/:category" component={MultiplePost}/>
+          <Route path="/category/:category/:hasPage?/:page?" component={MultiplePost}/>
           <Route path="/:year/:monthnum/:hasPage?/:page?" component={MultiplePost}/>
           {/* some other routes
           <RedirectWithStatus

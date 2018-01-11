@@ -29,6 +29,11 @@ class MultiplePost extends React.Component {
      }
    }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('shouldComponentUpdate', nextProps, nextState);
+  //   return true;
+  // }
+
   render() {
     // console.log('MultiplePost render');
 

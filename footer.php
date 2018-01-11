@@ -22,11 +22,6 @@ $categories = array_map( function( $cat ) {
 	];
 }, get_terms( 'category' ) );
 
-$request_path = $_SERVER['REQUEST_URI'];
-$match_page_regex = '/(.*?)(\/page\/\d+\/?)/';
-preg_match($match_page_regex, $_SERVER['REQUEST_URI'], $matches);
-var_dump($matches);
-
 // Prepare initial state for the Redux store
 $state = json_encode( [
 	'meta'           => [

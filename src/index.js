@@ -8,7 +8,15 @@ import history from './history';
 import ReagoApp from './components/ReagoApp';
 
 catchLinks(window, function (href) {
-    // console.log('caught', href);
+    const catchExceptions = [
+      '/wp-login.php',
+      '/wp-admin/',
+      '/feed/',
+      '/comments/feed/'
+    ];
+    if(catchExceptions.indexOf(href) > -1) {
+      window.location =  href;
+    }
     history.push(href);
 });
 
