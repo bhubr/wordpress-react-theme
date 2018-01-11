@@ -24,11 +24,63 @@ if( $response_code === 404 ) {
   $posts = get_posts( [ 'suppress_filters' => false ] );
 }
 $posts_mapped = reago_map_post_fields( $posts );
+
 if( $response_code !== 404 ) {
+
+  $base_path = $_SERVER['REQUEST_URI'];
+
+  // Get the post ids
   $post_ids = array_map( function( $post ) {
   	return $post['id'];
   }, $posts_mapped );
-  $posts_per_url = is_single() ? $post_ids[0] : $post_ids;
+
+  // If this is a single post/page, assign url => post id
+  if( is_single() ) {
+    $posts_per_url = [
+      $base_path => $post_ids[0]
+    ];
+  }
+  else {
+    // $has_previous_page = ! empty( get_previous_posts_link( 'prev' ) );
+    $has_next_page = ! empty( get_next_posts_link( 'next' ) );
+    // echo "$has_previous_page $has_next_page";
+		// 'hasPrevious' => $has_previous_page,
+		// 'hasNext' => $has_next_page,
+		// 'page'    => get_query_var('paged')
+    // Check if we're on a paged archive with page > 1
+    $match_page_regex = '/(.*?)(page\/\d+?)/';
+    $does_match = preg_match($match_page_regex, $base_path, $matches);
+
+    // Does match: extract page and archive base path
+    if( $does_match ) {
+      $base_path = $matches[1];
+      $page = (int)(substr($matches[2], 5));
+    }
+
+    // Otherwise page = 1
+    else {
+      $page = 1;
+    }
+
+    $posts_per_url = [
+      $base_path => [
+        'numPages' => $has_next_page ? $page + 1 : $page,
+        $page      => $post_ids
+      ]
+    ];
+    // isset( $posts_per_url ) ? [ $base_path => [
+    //   $page =>
+    // ] ] : []
+    // $base_path = $does_match ? $matches[1] : $_SERVER['REQUEST_URI'];
+    //
+    // echo "$base_path $page<br>";
+
+    // var_dump($matches);
+    // var_dump($does_match);
+
+    // if( ! $matches )
+    // $base_path = $matches[1];
+  }
 }
 $commentsPerPost = [];
 

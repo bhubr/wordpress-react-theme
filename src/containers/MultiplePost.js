@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PostList from '../components/PostList';
 import mapRouteParamsToQuery from '../utils/mapRouteParamsToQuery';
 import didRouteParamsChange from '../utils/didRouteParamsChange';
+import { Link } from 'react-router-dom';
 
 class MultiplePost extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class MultiplePost extends React.Component {
    }
 
    componentWillReceiveProps(nextProps) {
+     console.log('componentWillReceiveProps', nextProps);
      if( didRouteParamsChange( this.props, nextProps ) ) {
        this.loadData(nextProps.match);
      }
@@ -32,22 +34,43 @@ class MultiplePost extends React.Component {
 
     console.log('MultiplePost render', this.props);
     const { allPosts, postsPerUrl, commentsPerPost, match, isLoading } = this.props;
-    const postIds = postsPerUrl[match.url];
-    // const post = this.props.status === 404 ? undefined :
-    //   posts.find(p => (p.slug === this.slug));
-    let posts = postIds ?
-      allPosts.filter(p => (postIds.indexOf(p.id) !== -1)) : null;
-    if(posts) {
+
+    let urlBits = match.url.split('/');
+    const indexOfPage = urlBits.indexOf('page');
+    if( indexOfPage > -1 ) {
+      urlBits.splice(indexOfPage, 2);
+    }
+    const baseUrl = urlBits.join('/');
+    const page = match.params.page ? parseInt(match.params.page) : 1;
+
+      console.log('#### OK baseUrl, page, postIds', baseUrl, page, postsPerUrl);
+    const paginationForUrl = postsPerUrl[baseUrl];
+    const doneFetching = typeof paginationForUrl !== 'undefined' &&
+      typeof paginationForUrl[page] !== 'undefined';
+    let posts;
+    if(doneFetching) {
+      console.log('paginationForUrl', paginationForUrl);
+      const postIds = paginationForUrl[page];
+      console.log('post ids', postIds);
+      posts = allPosts.filter(p => (postIds.indexOf(p.id) !== -1));
       this.previousPosts = posts;
+      console.log('postsPerUrl/url/postId/post', postsPerUrl, match.url, postIds, posts, isLoading);
     }
     else {
       posts = this.previousPosts;
     }
-    console.log('postsPerUrl/url/postId/post', postsPerUrl, match.url, postIds, posts, isLoading);
+
 
     if(posts) {
       return (
+        <div>
         <PostList posts={posts} />
+          <div>
+          { page === 2 && <Link to={baseUrl}>Previous</Link> }
+          { page > 2 && <Link to={baseUrl + 'page/' + (page - 1) + '/'}>Previous</Link> }
+          { doneFetching && page < paginationForUrl.numPages && <Link to={baseUrl + 'page/' + (page + 1) + '/'}>Next</Link> }
+          </div>
+        </div>
       );
     }
     else if(isLoading){

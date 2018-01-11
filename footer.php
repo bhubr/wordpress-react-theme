@@ -21,8 +21,13 @@ $categories = array_map( function( $cat ) {
 		'slug' => $cat->slug
 	];
 }, get_terms( 'category' ) );
-// var_dump($posts_mapped);
 
+$request_path = $_SERVER['REQUEST_URI'];
+$match_page_regex = '/(.*?)(\/page\/\d+\/?)/';
+preg_match($match_page_regex, $_SERVER['REQUEST_URI'], $matches);
+var_dump($matches);
+
+// Prepare initial state for the Redux store
 $state = json_encode( [
 	'meta'           => [
 		'path'         => $_SERVER['REQUEST_URI'],
@@ -49,7 +54,7 @@ $state = json_encode( [
 		'items'     => $posts_mapped,
 		'isLoading' => '',
 		'lastError' => null,
-		'perUrl'   => isset( $posts_per_url ) ? [ $_SERVER['REQUEST_URI'] => $posts_per_url ] : []
+		'perUrl'   => $posts_per_url
 	]
 ] ); ?>
 			<script type='text/javascript'>

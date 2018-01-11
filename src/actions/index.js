@@ -27,12 +27,13 @@ export function requestPosts(query, url) {
   }
 }
 
-export function requestPostsSuccess(posts, url, isSingle) {
+export function requestPostsSuccess(posts, url, isSingle, numPages) {
   return {
     type: FETCH_POSTS_SUCCESS,
     posts,
     url,
-    isSingle
+    isSingle,
+    numPages
   }
 }
 
@@ -72,20 +73,25 @@ function fetchPosts(query, url) {
     throw new Error('PLEASE provide url for fetchPostsIfNeeded');
   }
   return dispatch => {
+    let totalPages;
     dispatch(requestPosts(query, url));
     const qs = serialize(query);
     const pathWithQueryString = '/posts' + (qs ? '?' + qs : '');
     // console.log('### FETCH POSTS #2', REST_URL + pathWithQueryString);
     fetch(REST_URL + pathWithQueryString)
-    .then(response => response.json())
+    .then(response => {
+      totalPages = parseInt(response.headers.get('X-WP-TotalPages'));
+      return response.json();
+    })
     .then(posts => {
       if(typeof query.slug === 'string' && posts.length === 0) {
         dispatch(requestPostsFailure('404 Not Found / No post with slug ' + query.slug));
       }
       else {
         const isSingle = typeof query.slug === 'string';
+        console.log('dispatch requestPostsSuccess with posts&totalPages', posts, totalPages);
         dispatch(requestPostsSuccess(
-          posts.map(transformPost), url, isSingle
+          posts.map(transformPost), url, isSingle, totalPages
         ));
         if(isSingle && posts[0].type === 'post') {
           dispatch(fetchCommentsIfNeeded(posts[0].id));
