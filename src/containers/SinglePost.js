@@ -7,19 +7,8 @@ import CommentForm from './CommentForm';
 import CommentsTemplate from '../components/CommentsTemplate';
 import mapRouteParamsToQuery from '../utils/mapRouteParamsToQuery';
 import didRouteParamsChange from '../utils/didRouteParamsChange';
-import { fetchPosts, loadComments } from '../actions';
+import { fetchPosts } from '../actions';
 
-// class SinglePost extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     // console.log('SinglePost', this);
-//   }
-//   render() {
-//     return(
-//       <div>SinglePost {this.props.post.title}</div>
-//     );
-//   }
-// }
 
 class SinglePostOrNotFound extends React.Component {
   constructor(props) {
@@ -29,7 +18,6 @@ class SinglePostOrNotFound extends React.Component {
  }
 
  loadData(match) {
-   // Extract params and url
    const { params, url } = match;
    const query = mapRouteParamsToQuery(params);
    this.props.fetchPosts(query, url);
@@ -37,29 +25,17 @@ class SinglePostOrNotFound extends React.Component {
 
  componentWillMount() {
    this.loadData(this.props.match);
-      // const { params, url } = this.props.match;
-      // const query = mapRouteParamsToQuery(params);
-      // this.props.fetchPosts(query, url);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('SinglePostOrNotFound componentWillReceiveProps', nextProps);
-    // console.log(this.props.match.params, nextProps.match.params);
-
     if( didRouteParamsChange( this.props, nextProps ) ) {
       this.loadData(nextProps.match);
-      // const { params, url } = nextProps.match;
-      // const query = mapRouteParamsToQuery(params);
-      // this.props.fetchPosts(query, url);
     }
   }
 
   render() {
-    console.log('SinglePostOrNotFound render', this.props);
     const { posts, postsPerUrl, commentsPerPost, match, isLoading, lastError } = this.props;
     const postId = postsPerUrl[match.url];
-    // const post = this.props.status === 404 ? undefined :
-    //   posts.find(p => (p.slug === this.slug));
     let post = this.props.status === 404 ? undefined :
       posts.find(p => (p.id === postId));
     if(post) {
@@ -68,7 +44,6 @@ class SinglePostOrNotFound extends React.Component {
     else {
       post = this.previousPost;
     }
-    console.log('postsPerUrl/url/postId/post', postsPerUrl, match.url, postId, post, isLoading, lastError);
 
     if(lastError && lastError.startsWith('404')) {
       return (<NotFound path={this.props.path} />);
@@ -78,7 +53,7 @@ class SinglePostOrNotFound extends React.Component {
       return (<div>
         <PostItem post={post} />
         <h2 className="comments-title">
-            9 thoughts on "<span dangerouslySetInnerHTML={{__html: post.title }} />"
+            {comments.length} thoughts on "<span dangerouslySetInnerHTML={{__html: post.title }} />"
         </h2>
         <CommentsTemplate post={post} comments={comments} depth={1} parent={0} />
         <CommentForm />
@@ -115,7 +90,7 @@ const mapStateToProps = state => {
 //   };
 // };
 const mapDispatchToProps = {
-  fetchPosts, loadComments
+  fetchPosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SinglePostOrNotFound);

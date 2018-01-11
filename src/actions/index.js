@@ -64,7 +64,7 @@ export function fetchPosts(query, url) {
           posts.map(transformPost), url, isSingle
         ));
         if(isSingle && posts[0].type === 'post') {
-          dispatch(fetchComments(posts[0].id));
+          dispatch(fetchCommentsIfNeeded(posts[0].id));
         }
       }
     })
@@ -151,6 +151,27 @@ export function fetchCommentsFailure(postId, error) {
   }
 }
 
+function shouldFetchComments(state, postId) {
+  const { perPost, isLoading } = state.comments;
+  if(perPost[postId]) {
+    return false;
+  }
+  else if(isLoading === postId) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+export function fetchCommentsIfNeeded(postId) {
+  return (dispatch, getState) => {
+    if (shouldFetchComments(getState(), postId)) {
+      return dispatch(fetchComments(postId))
+    }
+  }
+}
+
 export function fetchComments(postId) {
   if(! postId) {
     throw new Error('PLEASE provide postId for fetchComments');
@@ -194,21 +215,3 @@ export function fetchComments(postId) {
 //   }
 // }
 //
-// function shouldFetchPosts(state, subreddit) {
-//   const posts = state.postsBySubreddit[subreddit]
-//   if (!posts) {
-//     return true
-//   } else if (posts.isFetching) {
-//     return false
-//   } else {
-//     return posts.didInvalidate
-//   }
-// }
-//
-// export function fetchPostsIfNeeded(subreddit) {
-//   return (dispatch, getState) => {
-//     if (shouldFetchPosts(getState(), subreddit)) {
-//       return dispatch(fetchPosts(subreddit))
-//     }
-//   }
-// }

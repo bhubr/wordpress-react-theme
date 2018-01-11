@@ -42,7 +42,7 @@ export default function(state = initialState, action) {
     }
     case LOAD_COMMENTS_REQUEST: {
       return Object.assign( { ...state }, {
-        lastError: '', isLoading: true
+        lastError: '', isLoading: action.postId
       } );
     }
     case LOAD_COMMENTS_SUCCESS: {
