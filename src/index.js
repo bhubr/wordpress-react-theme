@@ -26,9 +26,6 @@ import {
 
 
 const { INITIAL_STATE } = window;
-if(Array.isArray(INITIAL_STATE.meta.strings)) {
-  INITIAL_STATE.meta.strings = {};
-}
 if(Array.isArray(INITIAL_STATE.posts.query)) {
   INITIAL_STATE.posts.query = {};
 }

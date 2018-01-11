@@ -27,7 +27,6 @@ $state = json_encode( [
 	'meta'           => [
 		'path'         => $_SERVER['REQUEST_URI'],
 		'status'       => $response_code,
-		'strings'      => isset( $strings ) ? $strings : [],
 		'postsPerPage' => get_option('posts_per_page'),
 		'users'        => $users,
 		'categories'   => $categories,
@@ -54,6 +53,7 @@ $state = json_encode( [
 ] ); ?>
 			<script type='text/javascript'>
 			window.INITIAL_STATE = <?php echo $state; ?>;
+			window.WP_I18N = <?php echo json_encode( $strings ); ?>;
 			window.REST_URL = '<?php echo get_option('siteurl'); ?>/wp-json/wp/v2';
 			window.COMMENTS_POST_URL = '<?php echo get_option('siteurl'); ?>/wp-comments-post.php';
 			</script>

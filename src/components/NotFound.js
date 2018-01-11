@@ -13,7 +13,8 @@ const Status = ({ code, children }) => (
 
 class NotFound extends React.Component {
   render() {
-    const { meta: { strings, path }, posts } = this.props;
+    const { meta: { path }, posts } = this.props;
+    const { notfound, explain, suggest } = WP_I18N;
     // console.log('NOT FOUND', this.props);
     return (
     <Status code={404}>

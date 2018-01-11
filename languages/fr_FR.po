@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Reago Theme - 0.2.0 - Development\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-09 17:09+0100\n"
+"POT-Creation-Date: 2018-01-11 17:05+0100\n"
 "PO-Revision-Date: 2018-01-02 12:37:17+0000\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -13,40 +13,72 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Poedit 2.0.5\n"
 
-#: 404.php:3
+#: comments.php:46
+msgid "&larr; Older Comments"
+msgstr "&larr; Commentaires plus anciens"
+
+#: comments.php:47
+msgid "Newer Comments &rarr;"
+msgstr "Commentaires plus récents &rarr;"
+
+#: comments.php:61
+msgid "Name"
+msgstr "Nom"
+
+#: comments.php:67
+msgid "Email"
+msgstr "Adresse e-mail"
+
+#: comments.php:73
+msgid "Website"
+msgstr "Site Internet"
+
+#: footer.php:64
+msgid "https://wordpress.org/"
+msgstr "https://fr.wordpress.org/"
+
+#: footer.php:64
+#, php-format
+msgid "Proudly powered by %s and %s"
+msgstr "Fièrement propulsé par %s et %s"
+
+#: functions.php:30
+msgid "Main Menu"
+msgstr "Menu Principal"
+
+#: functions.php:44
+msgid "Primary Widget Area"
+msgstr "Zone de widgets principale"
+
+#: functions.php:46
+msgid "The primary widget area"
+msgstr "La zone de widgets principale"
+
+#: header.php:87
 #, php-format
 msgid "You landed in the wrong place! Page %s doesn't exist."
 msgstr "Vous avez atterri au mauvais endroit ! La page %s n'existe pas."
 
-#: 404.php:4
+#: header.php:88
 msgid "Why don't you check out our latest articles?"
 msgstr "Pourquoi ne pas jeter un oeil à nos derniers articles ?"
 
-#: 404.php:13
+#: header.php:89
 msgid "404 Not Found"
 msgstr "404 Non Trouvé"
 
-#: footer.php:34
-msgid "https://wordpress.org/"
-msgstr "https://fr.wordpress.org/"
+#: index.php:11
+msgid "Published on "
+msgstr "Publi&eacute; le "
 
-#: footer.php:34
-#, php-format
-msgid "Proudly powered by %s"
-msgstr "Fièrement propulsé par %s et %s"
+#: index.php:11
+msgid "F j, Y"
+msgstr "j F Y"
 
-#: functions.php:31
-msgid "Main Menu"
-msgstr "Menu Principal"
+#: index.php:11
+msgid " by "
+msgstr " par "
 
-#: functions.php:45
-msgid "Primary Widget Area"
-msgstr "Zone de widgets principale"
-
-#: functions.php:47
-msgid "The primary widget area"
-msgstr "La zone de widgets principale"
-
-#: index.php:18
+#: index.php:30
 msgid "Sorry, no posts matched your criteria."
 msgstr "Désolé, aucun article ne correspond à votre recherche."

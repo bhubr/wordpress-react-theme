@@ -85,12 +85,28 @@ if( $response_code !== 404 ) {
 $commentsPerPost = [];
 
 $msg_page_doesnt_exist = esc_html__( "You landed in the wrong place! Page %s doesn't exist.", 'reago-theme' );
-$msg_page_try_this = esc_html__( "Why don't you check out one of our latest articles?", 'reago-theme' );
-$msg_404_not_found = esc_html__( '404 Not Found', 'reago-theme' );
+$msg_page_try_this = esc_html__( "Why don't you check out our latest articles?", 'reago-theme' );
 $strings = [
-  'explain'  => $msg_page_doesnt_exist,
-  'suggest'  => $msg_page_try_this,
-  'notfound' => $msg_404_not_found
+    'explain'   => $msg_page_doesnt_exist,
+    'suggest'   => $msg_page_try_this,
+    'notfound'  => __( '404 Not Found', 'reago-theme' ),
+    'months' => [
+        __('January'),
+        __('February'),
+        __('March'),
+        __('April'),
+        __('May'),
+        __('June'),
+        __('July'),
+        __('August'),
+        __('September'),
+        __('October'),
+        __('November'),
+        __('December')
+    ],
+    'publishedOn' => __('Published on ', 'reago-theme'),
+    'by'          => __(' by ', 'reago-theme'),
+    'dateFmt'     => __('F j, Y', 'reago-theme')
 ];
 // $posts_slug_id_map = array_reduce( $posts, 'reago_map_slug_id', [] );
 ?>
