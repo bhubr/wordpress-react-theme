@@ -1,13 +1,5 @@
 <?php
 require 'header.php';
-$msg_page_doesnt_exist = esc_html__( "You landed in the wrong place! Page %s doesn't exist.", 'reago-theme' );
-$msg_page_try_this = esc_html__( "Why don't you check out one of our latest articles?", 'reago-theme' );
-$msg_404_not_found = esc_html__( '404 Not Found', 'reago-theme' );
-$strings = [
-  'explain'  => $msg_page_doesnt_exist,
-  'suggest'  => $msg_page_try_this,
-  'notfound' => $msg_404_not_found
-];
 ?>
 <div class="grid">
 
