@@ -16,7 +16,7 @@ class PostItem extends React.Component {
           <Link to={post.link} dangerouslySetInnerHTML={{__html: post.title}} />
         </h2>
         <div className="meta">
-  				<small>{post.date} by <Link to={"/author/" + author.slug} title={"Articles par " + author.name} rel="author">{author.name}</Link></small>
+  				<small>{post.date} by <Link to={"/author/" + author.slug + "/"} title={"Articles par " + author.name} rel="author">{author.name}</Link></small>
   			</div>
         {/* https://stackoverflow.com/questions/27934238/rendering-raw-html-with-reactjs */}
         <div data-contains="content" className="content" dangerouslySetInnerHTML={{__html: post.content}} />
