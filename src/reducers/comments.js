@@ -1,7 +1,10 @@
 import {
   POST_COMMENT_REQUEST,
   POST_COMMENT_SUCCESS,
-  POST_COMMENT_FAILURE
+  POST_COMMENT_FAILURE,
+  LOAD_COMMENTS_REQUEST,
+  LOAD_COMMENTS_SUCCESS,
+  LOAD_COMMENTS_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -10,11 +13,13 @@ const initialState = {
     error: null,
     statusMessage: 'testtest'
   },
+  isLoading: false,
+  lastError: '',
   commentsPerPost: {}
 };
 
 export default function(state = initialState, action) {
-  const { form } = state;
+  const { form, perPost, isLoading, lastError } = state;
   switch (action.type) {
     case POST_COMMENT_REQUEST: {
       return Object.assign( { ...state }, {
@@ -33,6 +38,23 @@ export default function(state = initialState, action) {
         form: Object.assign( { ...form }, {
           isPending: false, error: action.error, statusMessage: 'An error occurred'
         })
+      } );
+    }
+    case LOAD_COMMENTS_REQUEST: {
+      return Object.assign( { ...state }, {
+        lastError: '', isLoading: true
+      } );
+    }
+    case LOAD_COMMENTS_SUCCESS: {
+      console.log('LOAD_COMMENTS_SUCCESS received', action.comments)
+      // const perPostUpdated = Object.assign(perPost, { [action.postId]: action.comments });
+      return Object.assign( { ...state }, {
+        lastError: '', isLoading: false, perPost: Object.assign({ ...perPost}, { [action.postId]: action.comments })
+      } );
+    }
+    case LOAD_COMMENTS_FAILURE: {
+      return Object.assign( { ...state }, {
+        lastError: action.error, isLoading: false
       } );
     }
     default:

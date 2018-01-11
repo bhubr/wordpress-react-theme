@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import rootReducer from './reducers'
+// import api from './middlewares/api'
 
 const loggerMiddleware = createLogger()
 //
@@ -23,6 +24,7 @@ export default function initStore(initialState) {
   return createStore(rootReducer, initialState, composeEnhancers(
     applyMiddleware(
       thunkMiddleware
+      //, api
       , loggerMiddleware
     )
   ));

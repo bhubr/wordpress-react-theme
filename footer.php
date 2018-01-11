@@ -40,6 +40,8 @@ $state = json_encode( [
 		  'error'     => null,
 		  'statusMessage' => 'testtest'
 		],
+		'isLoading' => false,
+		'lastError' => null,
 		'perPost'   => $commentsPerPost
 	],
 	'posts'       => [

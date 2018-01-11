@@ -19,8 +19,8 @@ msgid "You landed in the wrong place! Page %s doesn't exist."
 msgstr "Vous avez atterri au mauvais endroit ! La page %s n'existe pas."
 
 #: 404.php:4
-msgid "Why don't you check out one of our latest articles?"
-msgstr "Pourquoi ne pas jeter un oeil à un de nos derniers articles ?"
+msgid "Why don't you check out our latest articles?"
+msgstr "Pourquoi ne pas jeter un oeil à nos derniers articles ?"
 
 #: 404.php:13
 msgid "404 Not Found"

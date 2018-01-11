@@ -12,7 +12,7 @@ class CommentsTemplate extends React.Component {
   render() {
     const { depth, parent, post } = this.props;
     const comments = this.props.comments.filter(c => (c.parent == parent));
-    // console.log('CommentsTemplate', parent, depth, comments);
+    console.log('CommentsTemplate', parent, depth, comments);
     return (
       <ol>
       {comments.map(comment => <li key={comment.id} className={"comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent"} id="comment-1">
@@ -27,7 +27,7 @@ class CommentsTemplate extends React.Component {
             <Link to="/2018/01/post-slug/#comment-1">9 janvier 2018 à 18 h 39 min</Link>
           </div>
 
-      		<p>{ comment.content }</p>
+      		<p dangerouslySetInnerHTML={{__html: comment.content }} />
 
       		<div className="reply">
             <Link rel="nofollow"
