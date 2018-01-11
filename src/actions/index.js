@@ -15,14 +15,15 @@ export const LOAD_COMMENTS_REQUEST = 'LOAD_COMMENTS_REQUEST';
 export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS';
 export const LOAD_COMMENTS_FAILURE = 'LOAD_COMMENTS_FAILURE';
 
-// export function fetchPostsBySlug(slug) {
-//   return fetchPosts({ slug });
+// export function fetchPostsIfNeededBySlug(slug) {
+//   return fetchPostsIfNeeded({ slug });
 // }
 
-export function requestPosts(query) {
+export function requestPosts(query, url) {
   return {
     type: FETCH_POSTS_REQUEST,
-    query: query
+    query,
+    url
   }
 }
 
@@ -42,13 +43,36 @@ export function requestPostsFailure(error) {
   }
 }
 
-export function fetchPosts(query, url) {
+
+function shouldFetchPosts(state, url) {
+  const { perUrl, isLoading } = state.posts;
+  if(perUrl[url]) {
+    return false;
+  }
+  else if(isLoading === url) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+
+export function fetchPostsIfNeeded(query, url) {
+  return (dispatch, getState) => {
+    if (shouldFetchPosts(getState(), url)) {
+      return dispatch(fetchPosts(query, url))
+    }
+  }
+}
+
+function fetchPosts(query, url) {
   // console.log('### FETCH POSTS #1', query, url);
   if(! url) {
-    throw new Error('PLEASE provide url for fetchPosts');
+    throw new Error('PLEASE provide url for fetchPostsIfNeeded');
   }
   return dispatch => {
-    dispatch(requestPosts(query));
+    dispatch(requestPosts(query, url));
     const qs = serialize(query);
     const pathWithQueryString = '/posts' + (qs ? '?' + qs : '');
     // console.log('### FETCH POSTS #2', REST_URL + pathWithQueryString);

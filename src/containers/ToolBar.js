@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PostList from '../components/PostList';
 import PostSummary from '../components/PostSummary';
-import { fetchPosts } from '../actions';
+import { fetchPostsIfNeeded } from '../actions';
 import serialize from '../utils/serialize';
 
 class ToolBar extends React.Component {
@@ -50,7 +50,7 @@ class ToolBar extends React.Component {
     paddedMonth = (month < 10 ? '0' : '') + month;
     const before = `${year}-${paddedMonth}-01T00:00:00Z`;
     // console.log(before, after);
-    this.props.fetchPosts({ before, after });
+    this.props.fetchPostsIfNeeded({ before, after });
   }
 
   onSubmitDebugOpts(e) {
@@ -132,7 +132,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPosts: query => dispatch(fetchPosts(query))
+    fetchPostsIfNeeded: query => dispatch(fetchPostsIfNeeded(query))
   };
 }
 

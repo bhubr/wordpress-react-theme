@@ -13,7 +13,7 @@ catchLinks(window, function (href) {
 });
 
 import {
-  fetchPosts
+  fetchPostsIfNeeded
 } from './actions';
 
 

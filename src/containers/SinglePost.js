@@ -7,7 +7,7 @@ import CommentForm from './CommentForm';
 import CommentsTemplate from '../components/CommentsTemplate';
 import mapRouteParamsToQuery from '../utils/mapRouteParamsToQuery';
 import didRouteParamsChange from '../utils/didRouteParamsChange';
-import { fetchPosts } from '../actions';
+import { fetchPostsIfNeeded } from '../actions';
 
 
 class SinglePostOrNotFound extends React.Component {
@@ -20,7 +20,7 @@ class SinglePostOrNotFound extends React.Component {
  loadData(match) {
    const { params, url } = match;
    const query = mapRouteParamsToQuery(params);
-   this.props.fetchPosts(query, url);
+   this.props.fetchPostsIfNeeded(query, url);
  }
 
  componentWillMount() {
@@ -84,13 +84,4 @@ const mapStateToProps = state => {
   };
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchPosts: (query, url) => dispatch(fetchPosts(query, url))
-//   };
-// };
-const mapDispatchToProps = {
-  fetchPosts
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SinglePostOrNotFound);
+export default connect(mapStateToProps, { fetchPostsIfNeeded })(SinglePostOrNotFound);

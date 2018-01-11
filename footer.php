@@ -40,14 +40,14 @@ $state = json_encode( [
 		  'error'     => null,
 		  'statusMessage' => 'testtest'
 		],
-		'isLoading' => false,
+		'isLoading' => '',
 		'lastError' => null,
 		'perPost'   => $commentsPerPost
 	],
 	'posts'       => [
 		'query'     => [],
 		'items'     => $posts_mapped,
-		'isLoading' => false,
+		'isLoading' => '',
 		'lastError' => null,
 		'perUrl'   => isset( $posts_per_url ) ? [ $_SERVER['REQUEST_URI'] => $posts_per_url ] : []
 	]
