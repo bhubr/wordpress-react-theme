@@ -51,9 +51,6 @@ class SinglePostOrNotFound extends React.Component {
     else if(post) {
       return (<div>
         <PostItem post={post} />
-        <h2 className="comments-title">
-            {comments.length} thoughts on "<span dangerouslySetInnerHTML={{__html: post.title }} />"
-        </h2>
         <CommentsTemplate post={post} depth={1} parent={0} />
         <CommentForm postId={post.id} />
       </div>);

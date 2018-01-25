@@ -26592,57 +26592,69 @@ var CommentsTemplate = function (_React$Component) {
       console.log('CommentsTemplate', parent, depth, comments);
       var comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
       return _react2.default.createElement(
-        'ol',
+        'div',
         null,
-        comments.map(function (comment) {
-          return _react2.default.createElement(
-            'li',
-            { key: comment.id, className: "comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent", id: 'comment-1' },
-            _react2.default.createElement(
-              'div',
-              { id: 'div-comment-1', className: 'comment-body' },
+        _react2.default.createElement(
+          'h2',
+          { className: 'comments-title' },
+          comments.length,
+          ' thoughts on "',
+          _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: post.title } }),
+          '"'
+        ),
+        _react2.default.createElement(
+          'ol',
+          null,
+          comments.map(function (comment) {
+            return _react2.default.createElement(
+              'li',
+              { key: comment.id, className: "comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent", id: 'comment-1' },
               _react2.default.createElement(
                 'div',
-                { className: 'comment-author vcard' },
-                _react2.default.createElement('img', { alt: '', src: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=74&d=mm&r=g', srcSet: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=148&d=mm&r=g 2x', className: 'avatar avatar-74 photo', height: '74', width: '74' }),
+                { id: 'div-comment-1', className: 'comment-body' },
                 _react2.default.createElement(
-                  'cite',
-                  { className: 'fn' },
-                  'johndifool'
+                  'div',
+                  { className: 'comment-author vcard' },
+                  _react2.default.createElement('img', { alt: '', src: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=74&d=mm&r=g', srcSet: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=148&d=mm&r=g 2x', className: 'avatar avatar-74 photo', height: '74', width: '74' }),
+                  _react2.default.createElement(
+                    'cite',
+                    { className: 'fn' },
+                    'johndifool'
+                  ),
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'says' },
+                    'dit\xA0:'
+                  )
                 ),
                 _react2.default.createElement(
-                  'span',
-                  { className: 'says' },
-                  'dit\xA0:'
+                  'div',
+                  { className: 'comment-meta commentmetadata' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/2018/01/post-slug/#comment-1' },
+                    '9 janvier 2018 \xE0 18 h 39 min'
+                  )
+                ),
+                _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: comment.content } }),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'reply' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { rel: 'nofollow',
+                      className: 'comment-reply-link',
+                      to: '/2018/01/pour-vous-parier-il-se-revoltait-contre/?replytocom=1#respond',
+                      onClick: _this2.moveForm,
+                      'aria-label': 'R\xE9pondre \xE0 johndifool' },
+                    'R\xE9pondre'
+                  )
                 )
               ),
-              _react2.default.createElement(
-                'div',
-                { className: 'comment-meta commentmetadata' },
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: '/2018/01/post-slug/#comment-1' },
-                  '9 janvier 2018 \xE0 18 h 39 min'
-                )
-              ),
-              _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: comment.content } }),
-              _react2.default.createElement(
-                'div',
-                { className: 'reply' },
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { rel: 'nofollow',
-                    className: 'comment-reply-link',
-                    to: '/2018/01/pour-vous-parier-il-se-revoltait-contre/?replytocom=1#respond',
-                    onClick: _this2.moveForm,
-                    'aria-label': 'R\xE9pondre \xE0 johndifool' },
-                  'R\xE9pondre'
-                )
-              )
-            ),
-            _react2.default.createElement(CommentsTemplate, { comments: _this2.props.comments, parent: comment.id, depth: depth + 1 })
-          );
-        })
+              _react2.default.createElement(CommentsTemplate, { comments: _this2.props.comments, parent: comment.id, depth: depth + 1 })
+            );
+          })
+        )
       );
     }
   }]);
@@ -27287,14 +27299,6 @@ var SinglePostOrNotFound = function (_React$Component) {
           'div',
           null,
           _react2.default.createElement(_PostItem2.default, { post: post }),
-          _react2.default.createElement(
-            'h2',
-            { className: 'comments-title' },
-            comments.length,
-            ' thoughts on "',
-            _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: post.title } }),
-            '"'
-          ),
           _react2.default.createElement(_CommentsTemplate2.default, { post: post, depth: 1, parent: 0 }),
           _react2.default.createElement(_CommentForm2.default, { postId: post.id })
         );

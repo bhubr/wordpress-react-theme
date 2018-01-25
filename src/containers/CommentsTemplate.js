@@ -15,6 +15,10 @@ class CommentsTemplate extends React.Component {
     console.log('CommentsTemplate', parent, depth, comments);
     const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
     return (
+      <div>
+      <h2 className="comments-title">
+          {comments.length} thoughts on "<span dangerouslySetInnerHTML={{__html: post.title }} />"
+      </h2>
       <ol>
       {comments.map(comment => <li key={comment.id} className={"comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent"} id="comment-1">
 				<div id="div-comment-1" className="comment-body">
@@ -41,8 +45,10 @@ class CommentsTemplate extends React.Component {
           </div>
 				</div>
     		<CommentsTemplate comments={this.props.comments} parent={comment.id} depth={depth + 1} />
-      </li>)}
+      </li>
+      )}
       </ol>
+      </div>
     );
   }
 }
