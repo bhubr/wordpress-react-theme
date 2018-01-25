@@ -39,7 +39,7 @@ class CommentForm extends React.Component {
             </p>
             <p className="comment-form-email">
                 <label htmlFor="author_email">Adresse de messagerie <span className="required">*</span></label>
-                <input id="author_email" name="email" size="30" maxLength="100" aria-describedby="email-notes" aria-required="true" required="required" type="text" />
+                <input id="author_email" name="author_email" size="30" maxLength="100" aria-describedby="email-notes" aria-required="true" required="required" type="text" />
             </p>
             <p className="comment-form-url">
                 <label htmlFor="author_url">Site web</label>
