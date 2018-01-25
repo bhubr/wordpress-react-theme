@@ -52,7 +52,7 @@ class CommentForm extends React.Component {
             </p>
             <p className="form-submit">
                 <input name="submit" id="submit" className="submit" value="Laisser un commentaire" type="submit" />
-                <input name="post" value="253" id="post" type="hidden" />
+                <input name="post_id" value="253" id="post_id" type="hidden" />
                 <input name="parent" id="parent" value="0" type="hidden" />
             </p>
         </form>
