@@ -4,7 +4,7 @@ import PostItem from '../components/PostItem';
 import DebugPanel from './DebugPanel';
 import NotFound from '../components/NotFound';
 import CommentForm from './CommentForm';
-import CommentsTemplate from '../components/CommentsTemplate';
+import CommentsTemplate from './CommentsTemplate';
 import mapRouteParamsToQuery from '../utils/mapRouteParamsToQuery';
 import didRouteParamsChange from '../utils/didRouteParamsChange';
 import { fetchPostsIfNeeded } from '../actions';
@@ -49,13 +49,12 @@ class SinglePostOrNotFound extends React.Component {
       return (<NotFound path={this.props.path} />);
     }
     else if(post) {
-      const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
       return (<div>
         <PostItem post={post} />
         <h2 className="comments-title">
             {comments.length} thoughts on "<span dangerouslySetInnerHTML={{__html: post.title }} />"
         </h2>
-        <CommentsTemplate post={post} comments={comments} depth={1} parent={0} />
+        <CommentsTemplate post={post} depth={1} parent={0} />
         <CommentForm postId={post.id} />
       </div>);
     }
@@ -78,7 +77,6 @@ const mapStateToProps = state => {
     status: state.status,
     posts: state.posts.items,
     postsPerUrl: state.posts.perUrl,
-    commentsPerPost: state.comments.perPost,
     isLoading: state.posts.isLoading,
     lastError: state.posts.lastError
   };

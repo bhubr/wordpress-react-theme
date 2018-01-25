@@ -25911,121 +25911,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = require('react-router-dom');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CommentsTemplate = function (_React$Component) {
-  _inherits(CommentsTemplate, _React$Component);
-
-  function CommentsTemplate(props) {
-    _classCallCheck(this, CommentsTemplate);
-
-    var _this = _possibleConstructorReturn(this, (CommentsTemplate.__proto__ || Object.getPrototypeOf(CommentsTemplate)).call(this, props));
-
-    _this.moveForm = _this.moveForm.bind(_this);
-    return _this;
-  }
-
-  _createClass(CommentsTemplate, [{
-    key: 'moveForm',
-    value: function moveForm() {
-      // "return addComment.moveForm( &quot;div-comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;253&quot; )"
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          depth = _props.depth,
-          parent = _props.parent,
-          post = _props.post;
-
-      var comments = this.props.comments.filter(function (c) {
-        return c.parent == parent;
-      });
-      console.log('CommentsTemplate', parent, depth, comments);
-      return _react2.default.createElement(
-        'ol',
-        null,
-        comments.map(function (comment) {
-          return _react2.default.createElement(
-            'li',
-            { key: comment.id, className: "comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent", id: 'comment-1' },
-            _react2.default.createElement(
-              'div',
-              { id: 'div-comment-1', className: 'comment-body' },
-              _react2.default.createElement(
-                'div',
-                { className: 'comment-author vcard' },
-                _react2.default.createElement('img', { alt: '', src: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=74&d=mm&r=g', srcSet: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=148&d=mm&r=g 2x', className: 'avatar avatar-74 photo', height: '74', width: '74' }),
-                _react2.default.createElement(
-                  'cite',
-                  { className: 'fn' },
-                  'johndifool'
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'says' },
-                  'dit\xA0:'
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'comment-meta commentmetadata' },
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: '/2018/01/post-slug/#comment-1' },
-                  '9 janvier 2018 \xE0 18 h 39 min'
-                )
-              ),
-              _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: comment.content } }),
-              _react2.default.createElement(
-                'div',
-                { className: 'reply' },
-                _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { rel: 'nofollow',
-                    className: 'comment-reply-link',
-                    to: '/2018/01/pour-vous-parier-il-se-revoltait-contre/?replytocom=1#respond',
-                    onClick: _this2.moveForm,
-                    'aria-label': 'R\xE9pondre \xE0 johndifool' },
-                  'R\xE9pondre'
-                )
-              )
-            ),
-            _react2.default.createElement(CommentsTemplate, { comments: _this2.props.comments, parent: comment.id, depth: depth + 1 })
-          );
-        })
-      );
-    }
-  }]);
-
-  return CommentsTemplate;
-}(_react2.default.Component);
-
-exports.default = CommentsTemplate;
-
-},{"react":94,"react-router-dom":80}],114:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = require('react-router-dom');
-
 var _reactRedux = require('react-redux');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -26108,7 +25993,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(NotFound);
 
-},{"react":94,"react-redux":63,"react-router-dom":80}],115:[function(require,module,exports){
+},{"react":94,"react-redux":63,"react-router-dom":80}],114:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26205,7 +26090,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(PostItem);
 
-},{"../utils/formatDate":132,"react":94,"react-redux":63,"react-router-dom":80}],116:[function(require,module,exports){
+},{"../utils/formatDate":132,"react":94,"react-redux":63,"react-router-dom":80}],115:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26259,7 +26144,7 @@ var PostList = function (_React$Component) {
 
 exports.default = PostList;
 
-},{"./PostItem":115,"react":94}],117:[function(require,module,exports){
+},{"./PostItem":114,"react":94}],116:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26316,7 +26201,7 @@ var PostSummary = function (_React$Component) {
 
 exports.default = PostSummary;
 
-},{"react":94}],118:[function(require,module,exports){
+},{"react":94}],117:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26387,7 +26272,7 @@ var ReagoApp = function ReagoApp() {
 
 exports.default = ReagoApp;
 
-},{"../containers/DebugPanel":122,"../containers/MultiplePost":123,"../containers/SinglePost":124,"./RedirectWithStatus":119,"react":94,"react-router-dom":80}],119:[function(require,module,exports){
+},{"../containers/DebugPanel":122,"../containers/MultiplePost":123,"../containers/SinglePost":124,"./RedirectWithStatus":118,"react":94,"react-router-dom":80}],118:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26421,7 +26306,7 @@ var RedirectWithStatus = function RedirectWithStatus(_ref) {
 
 exports.default = RedirectWithStatus;
 
-},{"react":94,"react-router-dom":80}],120:[function(require,module,exports){
+},{"react":94,"react-router-dom":80}],119:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26469,7 +26354,7 @@ function initStore(initialState) {
   , loggerMiddleware)));
 }
 
-},{"./reducers":128,"redux":102,"redux-logger":95,"redux-thunk":96}],121:[function(require,module,exports){
+},{"./reducers":128,"redux":102,"redux-logger":95,"redux-thunk":96}],120:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26651,7 +26536,129 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CommentForm);
 
-},{"../actions":112,"react":94,"react-redux":63}],122:[function(require,module,exports){
+},{"../actions":112,"react":94,"react-redux":63}],121:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require('react-router-dom');
+
+var _reactRedux = require('react-redux');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CommentsTemplate = function (_React$Component) {
+  _inherits(CommentsTemplate, _React$Component);
+
+  function CommentsTemplate(props) {
+    _classCallCheck(this, CommentsTemplate);
+
+    var _this = _possibleConstructorReturn(this, (CommentsTemplate.__proto__ || Object.getPrototypeOf(CommentsTemplate)).call(this, props));
+
+    _this.moveForm = _this.moveForm.bind(_this);
+    return _this;
+  }
+
+  _createClass(CommentsTemplate, [{
+    key: 'moveForm',
+    value: function moveForm() {
+      // "return addComment.moveForm( &quot;div-comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;253&quot; )"
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          depth = _props.depth,
+          parent = _props.parent,
+          post = _props.post,
+          commentsPerPost = _props.commentsPerPost;
+
+      console.log('CommentsTemplate', parent, depth, comments);
+      var comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
+      return _react2.default.createElement(
+        'ol',
+        null,
+        comments.map(function (comment) {
+          return _react2.default.createElement(
+            'li',
+            { key: comment.id, className: "comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent", id: 'comment-1' },
+            _react2.default.createElement(
+              'div',
+              { id: 'div-comment-1', className: 'comment-body' },
+              _react2.default.createElement(
+                'div',
+                { className: 'comment-author vcard' },
+                _react2.default.createElement('img', { alt: '', src: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=74&d=mm&r=g', srcSet: 'http://1.gravatar.com/avatar/ad92ee570800e427e8fd4b099fa29611?s=148&d=mm&r=g 2x', className: 'avatar avatar-74 photo', height: '74', width: '74' }),
+                _react2.default.createElement(
+                  'cite',
+                  { className: 'fn' },
+                  'johndifool'
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'says' },
+                  'dit\xA0:'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'comment-meta commentmetadata' },
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/2018/01/post-slug/#comment-1' },
+                  '9 janvier 2018 \xE0 18 h 39 min'
+                )
+              ),
+              _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: comment.content } }),
+              _react2.default.createElement(
+                'div',
+                { className: 'reply' },
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { rel: 'nofollow',
+                    className: 'comment-reply-link',
+                    to: '/2018/01/pour-vous-parier-il-se-revoltait-contre/?replytocom=1#respond',
+                    onClick: _this2.moveForm,
+                    'aria-label': 'R\xE9pondre \xE0 johndifool' },
+                  'R\xE9pondre'
+                )
+              )
+            ),
+            _react2.default.createElement(CommentsTemplate, { comments: _this2.props.comments, parent: comment.id, depth: depth + 1 })
+          );
+        })
+      );
+    }
+  }]);
+
+  return CommentsTemplate;
+}(_react2.default.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    commentsPerPost: state.comments.perPost
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(CommentsTemplate);
+
+},{"react":94,"react-redux":63,"react-router-dom":80}],122:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26995,7 +27002,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DebugPanel);
 
-},{"../actions":112,"../components/PostList":116,"../components/PostSummary":117,"../utils/serialize":134,"react":94,"react-redux":63}],123:[function(require,module,exports){
+},{"../actions":112,"../components/PostList":115,"../components/PostSummary":116,"../utils/serialize":134,"react":94,"react-redux":63}],123:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27165,7 +27172,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPostsIfNeeded: _actions.fetchPostsIfNeeded })(MultiplePost);
 
-},{"../actions":112,"../components/PostList":116,"../utils/didRouteParamsChange":131,"../utils/mapRouteParamsToQuery":133,"react":94,"react-redux":63,"react-router-dom":80}],124:[function(require,module,exports){
+},{"../actions":112,"../components/PostList":115,"../utils/didRouteParamsChange":131,"../utils/mapRouteParamsToQuery":133,"react":94,"react-redux":63,"react-router-dom":80}],124:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27196,7 +27203,7 @@ var _CommentForm = require('./CommentForm');
 
 var _CommentForm2 = _interopRequireDefault(_CommentForm);
 
-var _CommentsTemplate = require('../components/CommentsTemplate');
+var _CommentsTemplate = require('./CommentsTemplate');
 
 var _CommentsTemplate2 = _interopRequireDefault(_CommentsTemplate);
 
@@ -27276,7 +27283,6 @@ var SinglePostOrNotFound = function (_React$Component) {
       if (lastError && lastError.startsWith('404')) {
         return _react2.default.createElement(_NotFound2.default, { path: this.props.path });
       } else if (post) {
-        var comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
         return _react2.default.createElement(
           'div',
           null,
@@ -27289,7 +27295,7 @@ var SinglePostOrNotFound = function (_React$Component) {
             _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: post.title } }),
             '"'
           ),
-          _react2.default.createElement(_CommentsTemplate2.default, { post: post, comments: comments, depth: 1, parent: 0 }),
+          _react2.default.createElement(_CommentsTemplate2.default, { post: post, depth: 1, parent: 0 }),
           _react2.default.createElement(_CommentForm2.default, { postId: post.id })
         );
       } else if (isLoading) {
@@ -27323,7 +27329,6 @@ var mapStateToProps = function mapStateToProps(state) {
     status: state.status,
     posts: state.posts.items,
     postsPerUrl: state.posts.perUrl,
-    commentsPerPost: state.comments.perPost,
     isLoading: state.posts.isLoading,
     lastError: state.posts.lastError
   };
@@ -27331,7 +27336,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPostsIfNeeded: _actions.fetchPostsIfNeeded })(SinglePostOrNotFound);
 
-},{"../actions":112,"../components/CommentsTemplate":113,"../components/NotFound":114,"../components/PostItem":115,"../utils/didRouteParamsChange":131,"../utils/mapRouteParamsToQuery":133,"./CommentForm":121,"./DebugPanel":122,"react":94,"react-redux":63}],125:[function(require,module,exports){
+},{"../actions":112,"../components/NotFound":113,"../components/PostItem":114,"../utils/didRouteParamsChange":131,"../utils/mapRouteParamsToQuery":133,"./CommentForm":120,"./CommentsTemplate":121,"./DebugPanel":122,"react":94,"react-redux":63}],125:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27415,7 +27420,7 @@ var MyRoutedApp = function MyRoutedApp() {
 
 _reactDom2.default.render(_react2.default.createElement(MyRoutedApp, null), rootEl);
 
-},{"./actions":112,"./components/ReagoApp":118,"./configureStore":120,"./history":125,"catch-links":1,"react":94,"react-dom":53,"react-redux":63,"react-router-dom":80}],127:[function(require,module,exports){
+},{"./actions":112,"./components/ReagoApp":117,"./configureStore":119,"./history":125,"catch-links":1,"react":94,"react-dom":53,"react-redux":63,"react-router-dom":80}],127:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

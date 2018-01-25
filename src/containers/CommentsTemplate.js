@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class CommentsTemplate extends React.Component {
   constructor(props) {
@@ -10,9 +11,9 @@ class CommentsTemplate extends React.Component {
     // "return addComment.moveForm( &quot;div-comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;253&quot; )"
   }
   render() {
-    const { depth, parent, post } = this.props;
-    const comments = this.props.comments.filter(c => (c.parent == parent));
+    const { depth, parent, post, commentsPerPost } = this.props;
     console.log('CommentsTemplate', parent, depth, comments);
+    const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
     return (
       <ol>
       {comments.map(comment => <li key={comment.id} className={"comment byuser comment-author-johndifool even thread-even depth-" + (depth + 1) + " parent"} id="comment-1">
@@ -46,4 +47,12 @@ class CommentsTemplate extends React.Component {
   }
 }
 
-export default CommentsTemplate;
+
+
+const mapStateToProps = state => {
+  return {
+    commentsPerPost: state.comments.perPost
+  };
+};
+
+export default connect(mapStateToProps)(CommentsTemplate);
