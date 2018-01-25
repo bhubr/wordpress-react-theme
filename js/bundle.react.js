@@ -26652,7 +26652,7 @@ var CommentsTemplate = function (_React$Component) {
                   )
                 )
               ),
-              _react2.default.createElement(CommentsTemplate, { comments: _this2.props.comments, parent: comment.id, depth: depth + 1 })
+              _react2.default.createElement(CommentsTemplate, { post: _this2.props.post, comments: _this2.props.comments, parent: comment.id, depth: depth + 1 })
             );
           })
         )

@@ -44,7 +44,7 @@ class CommentsTemplate extends React.Component {
             </Link>
           </div>
 				</div>
-    		<CommentsTemplate comments={this.props.comments} parent={comment.id} depth={depth + 1} />
+    		<CommentsTemplate post={this.props.post} comments={this.props.comments} parent={comment.id} depth={depth + 1} />
       </li>
       )}
       </ol>
