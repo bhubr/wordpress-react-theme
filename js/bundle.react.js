@@ -27461,6 +27461,7 @@ exports.default = function () {
         var comment = action.comment;
 
         var postComments = perPost[comment.post];
+        console.log('comments reducer POST_COMMENT_SUCCESS', postComments, comment, _defineProperty({}, comment.post, [].concat(_toConsumableArray(postComments), [comment])));
         return Object.assign(_extends({}, state), {
           form: Object.assign(_extends({}, form), {
             isPending: false, statusMessage: 'Your comment was posted successfully',
