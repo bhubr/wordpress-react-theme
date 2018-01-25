@@ -56,7 +56,7 @@ class SinglePostOrNotFound extends React.Component {
             {comments.length} thoughts on "<span dangerouslySetInnerHTML={{__html: post.title }} />"
         </h2>
         <CommentsTemplate post={post} comments={comments} depth={1} parent={0} />
-        <CommentForm />
+        <CommentForm postId={post.id} />
       </div>);
     }
     else if(isLoading){
