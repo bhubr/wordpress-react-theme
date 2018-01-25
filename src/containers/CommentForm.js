@@ -63,7 +63,7 @@ class CommentForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    comments: state. s
+    comments: state.comments
   };
 };
 
