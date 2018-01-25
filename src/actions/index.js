@@ -132,7 +132,7 @@ export function postComment(payload) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: serialize(payload)
+      body: serialize(payload, 'POST')
     })
     // .then(response => response.json())
     .then(response => {

@@ -29,26 +29,26 @@ class CommentForm extends React.Component {
         <form action={ COMMENTS_POST_URL } method="post" className="comment-form" onSubmit={this.onSubmit}>
             <p className="comment-notes"><span id="email-notes">Votre adresse de messagerie ne sera pas publiée.</span> Les champs obligatoires sont indiqués avec <span className="required">*</span></p>
             <p className="comment-form-comment">
-                <label htmlFor="comment">Commentaire</label>
-                <textarea id="comment" name="comment" cols="45" rows="8" maxLength="65525" aria-required="true" required="required"></textarea>
+                <label htmlFor="content">Commentaire</label>
+                <textarea id="content" name="content" cols="45" rows="8" maxLength="65525" aria-required="true" required="required"></textarea>
             </p>
-            <input name="wpml_language_code" value="fr" type="hidden" />
+            {/*<input name="wpml_language_code" value="fr" type="hidden" />*/}
             <p className="comment-form-author">
-                <label htmlFor="author">Nom <span className="required">*</span></label>
-                <input id="author" name="author" size="30" maxLength="245" aria-required="true" required="required" type="text" />
+                <label htmlFor="author_name">Nom <span className="required">*</span></label>
+                <input id="author_name" name="author_name" size="30" maxLength="245" aria-required="true" required="required" type="text" />
             </p>
             <p className="comment-form-email">
-                <label htmlFor="email">Adresse de messagerie <span className="required">*</span></label>
-                <input id="email" name="email" size="30" maxLength="100" aria-describedby="email-notes" aria-required="true" required="required" type="text" />
+                <label htmlFor="author_email">Adresse de messagerie <span className="required">*</span></label>
+                <input id="author_email" name="author_email" size="30" maxLength="100" aria-describedby="email-notes" aria-required="true" required="required" type="text" />
             </p>
             <p className="comment-form-url">
-                <label htmlFor="url">Site web</label>
-                <input id="url" name="url" size="30" maxLength="200" type="text" />
+                <label htmlFor="author_url">Site web</label>
+                <input id="author_url" name="author_url" size="30" maxLength="200" type="text" />
             </p>
             <p className="form-submit">
                 <input name="submit" id="submit" className="submit" value="Laisser un commentaire" type="submit" />
-                <input name="comment_post_ID" value="253" id="comment_post_ID" type="hidden" />
-                <input name="comment_parent" id="comment_parent" value="0" type="hidden" />
+                <input name="post" value="253" id="post" type="hidden" />
+                <input name="parent" id="parent" value="0" type="hidden" />
             </p>
         </form>
       </div>
