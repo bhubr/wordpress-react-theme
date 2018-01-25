@@ -60,7 +60,7 @@ class SinglePostOrNotFound extends React.Component {
       </div>);
     }
     else if(isLoading){
-      return (<div style={{ border: '4px solid blue', padding: '20px' }}>LOADING</div>);
+      return (<div style={{ padding: '10px', textAlign: 'center' }}><img style={{ maxHeight: '96px' }} src="https://media.giphy.com/media/UEsrLdv7ugRTq/giphy.gif" /></div>);
     }
     else if(lastError) {
       return (<div style={{ background: '#fff', border: '4px solid red', padding: '20px' }}>UNEXPECTED ERROR</div>);

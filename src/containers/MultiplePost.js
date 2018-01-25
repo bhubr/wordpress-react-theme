@@ -79,10 +79,10 @@ class MultiplePost extends React.Component {
       );
     }
     else if(isLoading){
-      return (<div style={{ height: '100%', border: '4px solid blue', padding: '100px 20px' }}>LOADING</div>);
+      return (<div style={{ padding: '10px', textAlign: 'center' }}><img style={{ maxHeight: '96px' }} src="https://media.giphy.com/media/UEsrLdv7ugRTq/giphy.gif" /></div>);
     }
     else {
-      return(<div style={{ height: '100%', border: '4px solid red', padding: '20px' }}>HOLY SHIT I SHOULD BE LOADING!!!</div>);
+      return(<div></div>);
     }
   }
 
