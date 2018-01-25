@@ -21,7 +21,7 @@ class CommentForm extends React.Component {
       payload[ input.name ] = isNumeric(input.value) ? parseInt(input.value, 10) :
         input.value;
     }
-    payload.comment = textarea[0].value;
+    payload.comment_content = textarea[0].value;
     // console.log('ONSUBMIT COMMENT', payload);
     this.props.postComment(payload);
   }
@@ -63,7 +63,7 @@ class CommentForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    comments: state.comments
+    comments: state. s
   };
 };
 
