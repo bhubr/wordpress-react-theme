@@ -26589,7 +26589,7 @@ var CommentsTemplate = function (_React$Component) {
           post = _props.post,
           commentsPerPost = _props.commentsPerPost;
 
-      console.log('CommentsTemplate', parent, depth, comments);
+      console.log('CommentsTemplate', parent, depth, post, commentsPerPost);
       var comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
       return _react2.default.createElement(
         'div',

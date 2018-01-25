@@ -12,7 +12,7 @@ class CommentsTemplate extends React.Component {
   }
   render() {
     const { depth, parent, post, commentsPerPost } = this.props;
-    console.log('CommentsTemplate', parent, depth, comments);
+    console.log('CommentsTemplate', parent, depth, post, commentsPerPost);
     const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
     return (
       <div>
