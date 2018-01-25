@@ -27464,9 +27464,9 @@ exports.default = function () {
         console.log('comments reducer POST_COMMENT_SUCCESS', postComments, comment, _defineProperty({}, comment.post, [].concat(_toConsumableArray(postComments), [comment])));
         return Object.assign(_extends({}, state), {
           form: Object.assign(_extends({}, form), {
-            isPending: false, statusMessage: 'Your comment was posted successfully',
-            perPost: Object.assign(_extends({}, perPost), _defineProperty({}, comment.post, [].concat(_toConsumableArray(postComments), [comment])))
-          })
+            isPending: false, statusMessage: 'Your comment was posted successfully'
+          }),
+          perPost: Object.assign(_extends({}, perPost), _defineProperty({}, comment.post, [].concat(_toConsumableArray(postComments), [comment])))
         });
       }
     case _actions.POST_COMMENT_FAILURE:

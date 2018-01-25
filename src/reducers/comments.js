@@ -32,9 +32,9 @@ export default function(state = initialState, action) {
       console.log('comments reducer POST_COMMENT_SUCCESS', postComments, comment, { [comment.post]: [...postComments, comment] });
       return Object.assign( { ...state }, {
         form: Object.assign( { ...form }, {
-          isPending: false, statusMessage: 'Your comment was posted successfully',
-          perPost: Object.assign({ ...perPost}, { [comment.post]: [...postComments, comment] })
-        })
+          isPending: false, statusMessage: 'Your comment was posted successfully'
+        }),
+        perPost: Object.assign({ ...perPost}, { [comment.post]: [...postComments, comment] })
       } );
     }
     case POST_COMMENT_FAILURE: {
