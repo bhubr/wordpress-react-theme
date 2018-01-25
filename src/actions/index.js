@@ -127,12 +127,12 @@ export function postComment(payload) {
   return dispatch => {
     dispatch(reqPostComment(payload));
     fetch(REST_URL + '/comments', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: serialize(payload, 'POST')
+      body: serialize(payload, 'GET')
     })
     // .then(response => response.json())
     .then(response => {
