@@ -25753,9 +25753,10 @@ function reqPostComment(query) {
   };
 }
 
-function reqPostCommentSuccess() {
+function reqPostCommentSuccess(comment) {
   return {
-    type: POST_COMMENT_SUCCESS
+    type: POST_COMMENT_SUCCESS,
+    comment: comment
   };
 }
 
@@ -25777,11 +25778,11 @@ function postComment(payload) {
         'Content-Type': 'application/json'
       },
       body: (0, _serialize2.default)(payload, 'POST')
-    })
-    // .then(response => response.json())
-    .then(function (response) {
+    }).then(function (response) {
+      return response.json();
+    }).then(function (response) {
       // console.log('RECV ON POST COMMENT RETURN');
-      dispatch(reqPostCommentSuccess());
+      dispatch(reqPostCommentSuccess((0, _transformers.transformComment)(response)));
     }).catch(function (err) {
       return dispatch(reqPostCommentFailure(err));
     });
@@ -27440,9 +27441,13 @@ exports.default = function () {
       }
     case _actions.POST_COMMENT_SUCCESS:
       {
+        var comment = action.comment;
+
+        var postComments = perPost[comment.post];
         return Object.assign(_extends({}, state), {
           form: Object.assign(_extends({}, form), {
-            isPending: false, statusMessage: 'Your comment was posted successfully'
+            isPending: false, statusMessage: 'Your comment was posted successfully',
+            perPost: Object.assign(_extends({}, perPost), _defineProperty({}, comment.post, [].concat(_toConsumableArray(postComments), [comment])))
           })
         });
       }
@@ -27482,6 +27487,8 @@ exports.default = function () {
 var _actions = require('../actions');
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var initialState = {
   form: {

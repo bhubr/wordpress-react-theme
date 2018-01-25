@@ -27,9 +27,12 @@ export default function(state = initialState, action) {
       } );
     }
     case POST_COMMENT_SUCCESS: {
+      const { comment } = action;
+      const postComments = perPost[comment.post];
       return Object.assign( { ...state }, {
         form: Object.assign( { ...form }, {
-          isPending: false, statusMessage: 'Your comment was posted successfully'
+          isPending: false, statusMessage: 'Your comment was posted successfully',
+          perPost: Object.assign({ ...perPost}, { [comment.post]: [...postComments, comment] })
         })
       } );
     }

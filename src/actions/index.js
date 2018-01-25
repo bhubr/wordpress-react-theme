@@ -109,9 +109,10 @@ export function reqPostComment(query) {
   }
 }
 
-export function reqPostCommentSuccess() {
+export function reqPostCommentSuccess(comment) {
   return {
-    type: POST_COMMENT_SUCCESS
+    type: POST_COMMENT_SUCCESS,
+    comment
   }
 }
 
@@ -134,10 +135,11 @@ export function postComment(payload) {
       },
       body: serialize(payload, 'POST')
     })
-    // .then(response => response.json())
+    .then(response => response.json())
     .then(response => {
       // console.log('RECV ON POST COMMENT RETURN');
       dispatch(reqPostCommentSuccess(
+        transformComment(response)
       ));
     })
     .catch(err => dispatch(reqPostCommentFailure(err)));
