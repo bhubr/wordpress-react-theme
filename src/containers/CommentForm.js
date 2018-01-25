@@ -2,6 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { postComment } from '../actions';
 
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 class CommentForm extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +18,8 @@ class CommentForm extends React.Component {
     let payload = {};
     for(let i = 0 ; i < inputs.length ; i++) {
       const input = inputs[i];
-      payload[ input.name ] = input.value;
+      payload[ input.name ] = isNumeric(input.value) ? parseInt(input.value, 10) :
+        input.value;
     }
     payload.comment = textarea[0].value;
     // console.log('ONSUBMIT COMMENT', payload);
