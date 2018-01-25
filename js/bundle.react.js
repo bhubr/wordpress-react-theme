@@ -26586,11 +26586,12 @@ var CommentsTemplate = function (_React$Component) {
       var _props = this.props,
           depth = _props.depth,
           parent = _props.parent,
-          post = _props.post,
-          commentsPerPost = _props.commentsPerPost;
+          post = _props.post;
 
-      console.log('CommentsTemplate', parent, depth, post, commentsPerPost);
-      var comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
+      console.log('CommentsTemplate', parent, depth, post);
+      var comments = this.props.comments.filter(function (c) {
+        return c.parent == parent;
+      });
       return _react2.default.createElement(
         'div',
         null,
@@ -26662,13 +26663,17 @@ var CommentsTemplate = function (_React$Component) {
   return CommentsTemplate;
 }(_react2.default.Component);
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    commentsPerPost: state.comments.perPost
-  };
-};
+//
+// const mapStateToProps = state => {
+//   return {
+//     commentsPerPost: state.comments.perPost
+//   };
+// };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(CommentsTemplate);
+// export default connect(mapStateToProps)(CommentsTemplate);
+
+
+exports.default = CommentsTemplate;
 
 },{"react":94,"react-redux":63,"react-router-dom":80}],122:[function(require,module,exports){
 'use strict';
@@ -27270,6 +27275,7 @@ var SinglePostOrNotFound = function (_React$Component) {
       if ((0, _didRouteParamsChange2.default)(this.props, nextProps)) {
         this.loadData(nextProps.match);
       }
+      console.log('componentWillReceiveProps', nextProps);
     }
   }, {
     key: 'render',
@@ -27295,11 +27301,12 @@ var SinglePostOrNotFound = function (_React$Component) {
       if (lastError && lastError.startsWith('404')) {
         return _react2.default.createElement(_NotFound2.default, { path: this.props.path });
       } else if (post) {
+        var comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
         return _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(_PostItem2.default, { post: post }),
-          _react2.default.createElement(_CommentsTemplate2.default, { post: post, depth: 1, parent: 0 }),
+          _react2.default.createElement(_CommentsTemplate2.default, { post: post, comments: comments, depth: 1, parent: 0 }),
           _react2.default.createElement(_CommentForm2.default, { postId: post.id })
         );
       } else if (isLoading) {
@@ -27329,6 +27336,7 @@ var SinglePostOrNotFound = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    commentsPerPost: state.comments.perPost,
     path: state.path,
     status: state.status,
     posts: state.posts.items,

@@ -11,9 +11,9 @@ class CommentsTemplate extends React.Component {
     // "return addComment.moveForm( &quot;div-comment-1&quot;, &quot;1&quot;, &quot;respond&quot;, &quot;253&quot; )"
   }
   render() {
-    const { depth, parent, post, commentsPerPost } = this.props;
-    console.log('CommentsTemplate', parent, depth, post, commentsPerPost);
-    const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
+    const { depth, parent, post } = this.props;
+    console.log('CommentsTemplate', parent, depth, post);
+    const comments = this.props.comments.filter(c => (c.parent == parent));
     return (
       <div>
       <h2 className="comments-title">
@@ -54,11 +54,12 @@ class CommentsTemplate extends React.Component {
 }
 
 
+//
+// const mapStateToProps = state => {
+//   return {
+//     commentsPerPost: state.comments.perPost
+//   };
+// };
 
-const mapStateToProps = state => {
-  return {
-    commentsPerPost: state.comments.perPost
-  };
-};
-
-export default connect(mapStateToProps)(CommentsTemplate);
+// export default connect(mapStateToProps)(CommentsTemplate);
+export default CommentsTemplate;

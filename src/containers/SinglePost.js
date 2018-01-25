@@ -31,6 +31,7 @@ class SinglePostOrNotFound extends React.Component {
     if( didRouteParamsChange( this.props, nextProps ) ) {
       this.loadData(nextProps.match);
     }
+    console.log('componentWillReceiveProps', nextProps);
   }
 
   render() {
@@ -49,9 +50,10 @@ class SinglePostOrNotFound extends React.Component {
       return (<NotFound path={this.props.path} />);
     }
     else if(post) {
+      const comments = commentsPerPost[post.id] ? commentsPerPost[post.id] : [];
       return (<div>
         <PostItem post={post} />
-        <CommentsTemplate post={post} depth={1} parent={0} />
+        <CommentsTemplate post={post} comments={comments} depth={1} parent={0} />
         <CommentForm postId={post.id} />
       </div>);
     }
@@ -70,6 +72,7 @@ class SinglePostOrNotFound extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    commentsPerPost: state.comments.perPost,
     path: state.path,
     status: state.status,
     posts: state.posts.items,
