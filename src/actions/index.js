@@ -123,14 +123,14 @@ export function reqPostCommentFailure(error) {
 }
 
 export function postComment(payload) {
-  // console.log('### POST COMMENT #1', payload);
+  console.log('### POST COMMENT #1', payload);
   return dispatch => {
     dispatch(reqPostComment(payload));
-    fetch(COMMENTS_POST_URL, {
+    fetch(REST_URL + '/comments', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json, application/xml, text/play, text/html, *.*',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: serialize(payload)
     })
