@@ -1,4 +1,12 @@
 <?php
+/**
+ * Solution to 401 when POSTing commentsPerPost
+ * Source: https://www.contradodigital.com/2016/04/06/post-comments-wordpress-rest-api-version-2/#comment-36599
+ */
+function reago_filter_rest_allow_anonymous_comments() {
+		return true;
+}
+add_filter('rest_allow_anonymous_comments', 'reago_filter_rest_allow_anonymous_comments');
 
 add_action( 'wp_enqueue_scripts', 'reago_enqueue_styles' );
 
