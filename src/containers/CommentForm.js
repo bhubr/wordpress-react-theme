@@ -34,8 +34,8 @@ class CommentForm extends React.Component {
         <form action={ COMMENTS_POST_URL } method="post" className="comment-form" onSubmit={this.onSubmit}>
             <p className="comment-notes"><span id="email-notes">Votre adresse de messagerie ne sera pas publiée.</span> Les champs obligatoires sont indiqués avec <span className="required">*</span></p>
             <p className="comment-form-comment">
-                <label htmlFor="content">Commentaire</label>
-                <textarea id="content" name="content" cols="45" rows="8" maxLength="65525" aria-required="true" required="required"></textarea>
+                <label htmlFor="comment_content">Commentaire</label>
+                <textarea id="comment_content" name="comment_content" cols="45" rows="8" maxLength="65525" aria-required="true" required="required"></textarea>
             </p>
             {/*<input name="wpml_language_code" value="fr" type="hidden" />*/}
             <p className="comment-form-author">
